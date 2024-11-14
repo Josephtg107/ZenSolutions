@@ -1,0 +1,273 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #d9f99d;
+  color: #01395D;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1, h2, p {
+  margin: 0;
+}
+
+/* Navigation Bar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: #d4ff65;
+  color: #000000;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-logo img {
+  height: 50px;
+  border-radius: 10px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.nav-links li a {
+  font-size: 1.2rem;
+  color: #e4ff85;
+  font-weight: bold;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.nav-links li a:hover {
+  transform: scale(1.2);
+  color: #d4ff65;
+}
+
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: #000000;
+  transition: transform 0.3s ease;
+}
+
+/* Mobile Menu */
+.nav-links {
+  display: flex;
+}
+
+.nav-links.active {
+  display: flex;
+  flex-direction: column;
+  background-color: #a78bfa;
+  position: absolute;
+  top: 70px;
+  right: 0;
+  left: 0;
+  padding: 20px;
+}
+
+.nav-links li {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px;
+  background-color: #a78bfa;
+}
+
+.hero-content {
+  flex: 1;
+  min-width: 300px;
+  padding: 20px;
+  text-align: center;
+}
+
+.hero-image img {
+  max-width: 80%;
+  height: auto;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #d9f99d;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: #01395D;
+}
+
+.hero p {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #01395D;
+}
+
+.cta {
+  display: inline-block;
+  padding: 15px 30px;
+  font-size: 1rem;
+  background-color: #e4ff85;
+  border-radius: 50px;
+  border: 2px solid #01395D;
+  color: #01395D;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cta:hover {
+  background-color: #d4ff65;
+}
+
+/* Hero Image */
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+/* Contact Section */
+.contact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px;
+  background-color: #a78bfa;
+  color: #01395D;
+}
+
+.contact-image {
+  flex: 1;
+  max-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.contact-image img {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  object-fit: contain;
+}
+
+.contact-info {
+  flex: 2;
+  padding: 20px;
+  text-align: left;
+}
+
+.contact-info h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #01395D;
+}
+
+.contact-info p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #01395D;
+}
+
+.contact-info a {
+  color: #01395D;
+  font-weight: bold;
+}
+
+.socials {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.socials svg {
+  width: 35px;
+  height: 35px;
+  fill: #01395D;
+  transition: transform 0.2s ease, fill 0.2s ease;
+}
+
+.socials svg:hover {
+  transform: scale(1.2);
+  fill: #e4ff85;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-content {
+    margin-bottom: 20px;
+  }
+
+  .hero-image img {
+    width: 90%;
+    max-width: none;
+  }
+
+  .contact {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .contact-image {
+    margin-bottom: 20px;
+  }
+
+  .socials {
+    justify-content: center;
+  }
+}
