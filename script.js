@@ -31,8 +31,28 @@ function notify() {
 
     if (email) {
         document.getElementById("notification-message").innerText = `Thanks! You'll be notified at ${email}.`;
-        emailInput.value = ""; // Clear the input
     } else {
-        document.getElementById("notification-message").innerText = "Please enter a valid email.";
+        document.getElementById("notification-message").innerText = "Please enter a valid email address.";
     }
 }
+
+// Scroll-triggered animations
+function reveal() {
+    const reveals = document.querySelectorAll('.hero, .about, .contact, .blog, .work');
+
+    for (let i = 0; i < reveals.length; i++) {
+        const windowHeight = window.innerHeight;
+        const elementTop = reveals[i].getBoundingClientRect().top;
+        const elementVisible = 150;
+
+        if (elementTop < windowHeight - elementVisible) {
+            reveals[i].style.opacity = 1;
+            reveals[i].style.transform = 'translateY(0)';
+        }
+    }
+}
+
+window.addEventListener('scroll', reveal);
+
+// Initial call to reveal elements on page load
+reveal();

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zen Solutions</title>
+  <script src="script.js"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,7 +12,7 @@
   <nav class="navbar">
     <div class="nav-logo">
       <a href="#">
-        <img src="https://josephtg107.github.io/ZenSolutions/images/ZenMiniLogo.png" alt="Zen Logo">
+        <img src="images/ZenMiniLogo-cutout.png" alt="Zen Logo">
       </a>
     </div>
     <div class="hamburger" onclick="toggleMenu()">
@@ -21,28 +22,39 @@
       <span></span>
     </div>
     <ul class="nav-links" id="nav-menu">
-      <li><a href="#hero">Home</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#about">About Us</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about" data-en="Who We Are" data-es="Quiénes Somos"></a></li>
+      <li><a href="#services" data-en="How We Work" data-es="Cómo Trabajamos"></a></li>
+      <li><a href="#contact" data-en="Let's Connect" data-es="Escríbenos"></a></li>
+      <li><a href="#work" data-en="Success Stories" data-es="Casos de Éxito"></a></li>
     </ul>
   </nav>
 
   <!-- Hero Section -->
   <section id="hero" class="hero">
     <div class="hero-content">
-      <h1>COMING SOON</h1>
-      <p>MARKETING</p>
-      <a href="#" class="cta">Follow up</a>
+      <h1 data-en="Welcome to Zen Solutions" data-es="Bienvenido a Zen Solutions"></h1>
+      <p data-en="Your partner in innovative solutions." data-es="Tu socio en soluciones innovadoras."></p>
+      <a href="#about" class="cta" data-en="Who We Are" data-es="Cómo Trabajamos">Learn More</a>
     </div>
     <div class="hero-image">
       <img src="https://josephtg107.github.io/ZenSolutions/images/ComingSoonZen.jpg" alt="ZenSolutions" class="logo">
     </div>
   </section>
 
-  <!-- Second Image -->
-  <section id="services" class="hero-image">
-    <img src="https://josephtg107.github.io/ZenSolutions/images/UniformeZen.jpg" alt="ZenSolutions" class="logo">
+<!-- About Us Section -->
+<section id="about" class="about">
+  <div class="about-content">
+    <h2 data-en="Who We Are" data-es="Quiénes Somos">Who We Are</h2>
+    <p data-en="We’re a passionate team driven by a shared dream of exploring marketing and software. The pandemic opened our eyes to how essential technology is, and it inspired us to combine our skills in design, management, and app development. Together, we’ve built a vibrant, innovative company with fresh ideas, ready to offer marketing and software services that can help you grow. We’d be honored to collaborate with you!" data-es="Somos un equipo apasionado impulsado por un sueño compartido de explorar el marketing y el software. La pandemia nos abrió los ojos a lo esencial que es la tecnología, y nos inspiró a combinar nuestras habilidades en diseño, gestión y desarrollo de aplicaciones. Juntos, hemos construido una empresa vibrante e innovadora con ideas frescas, listas para ofrecer servicios de marketing y software que pueden ayudarte a crecer. ¡Nos encantaría colaborar contigo!"></p>
+  </div>
+  <div class="about-image">
+    <img src="images/WhatsApp Image 2024-11-05 at 22.53.44.jpeg" alt="About Us" class="logo">
+  </div>
+</section>
+
+  <!-- Services Section -->
+  <section id="services" class="services">
+    <h2 data-en="Services" data-es="Servicios">Services</h2>
   </section>
 
   <!-- Contact Section -->
@@ -51,9 +63,9 @@
       <img src="https://josephtg107.github.io/ZenSolutions/images/ZEN.png" alt="Contact Zen" class="logo">
     </div>
     <div class="contact-info">
-      <h2>Reach Out</h2>
-      <p>Zen Solutions</p>
-      <p><a href="mailto:zensolutions.designs@gmail.com">zensolutions.designs@gmail.com</a></p>
+      <h2 data-en="Reach Out" data-es="Contáctanos">Reach Out</h2>
+      <p data-en="Zen Solutions" data-es="Zen Solutions">Zen Solutions</p>
+      <p><a href="mailto:zensolutions.designs@gmail.com" data-en="zensolutions.designs@gmail.com" data-es="zensolutions.designs@gmail.com">zensolutions.designs@gmail.com</a></p>
       <div class="socials">
         <a href="https://www.instagram.com/z.zensolutions?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -77,18 +89,35 @@
     </div>
   </section>
 
+  <!-- Work Section -->
+  <section id="work" class="work">
+    <h2 data-en="Our Work" data-es="Nuestro Trabajo">Our Work</h2>
+    <p data-en="Showcase of our projects and achievements." data-es="Muestra de nuestros proyectos y logros.">Showcase of our projects and achievements.</p>
+  </section>
+
   <script>
     // JavaScript for toggle menu
     function toggleMenu() {
       const navMenu = document.getElementById('nav-menu');
       navMenu.classList.toggle('active');
     }
+
+    // JavaScript for language detection and switching
+    function setLanguage() {
+      const userLang = navigator.language || navigator.userLanguage;
+      const elements = document.querySelectorAll('[data-en]');
+
+      elements.forEach(element => {
+        if (userLang.startsWith('es')) {
+          element.textContent = element.getAttribute('data-es');
+        } else {
+          element.textContent = element.getAttribute('data-en');
+        }
+      });
+    }
+
+    // Set language on page load
+    document.addEventListener('DOMContentLoaded', setLanguage);
   </script>
 </body>
 </html>
-
-
-
-
-
-
