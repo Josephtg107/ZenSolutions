@@ -38,7 +38,7 @@ function notify() {
 
 // Scroll-triggered animations
 function reveal() {
-    const reveals = document.querySelectorAll('.hero, .about, .contact, .blog, .work');
+    const reveals = document.querySelectorAll('.hero, .about, .contact, .blog, .work, .services');
 
     for (let i = 0; i < reveals.length; i++) {
         const windowHeight = window.innerHeight;

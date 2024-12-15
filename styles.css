@@ -7,7 +7,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #d9f99d;
+  background-color: #a78bfa;
   color: #01395D;
   overflow-x: hidden; /* Prevent horizontal scroll */
 }
@@ -186,7 +186,6 @@ h1, h2, p {
   object-fit: cover;
 }
 
-/* About Us Section */
 .about {
   display: flex;
   flex-wrap: wrap;
@@ -197,6 +196,7 @@ h1, h2, p {
   opacity: 0;
   transform: translateY(50px);
   transition: opacity 1s ease-out, transform 1s ease-out;
+  flex-direction: row-reverse; /* Flip the order of the child elements */
 }
 
 .about-content {
@@ -238,11 +238,12 @@ h1, h2, p {
 .contact {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
+  align-items: center; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
   padding: 50px;
   background-color: #a78bfa;
   color: #01395D;
+  min-height: 100vh; /* Full screen height */
   opacity: 0;
   transform: translateY(50px);
   transition: opacity 1s ease-out, transform 1s ease-out;
@@ -250,24 +251,22 @@ h1, h2, p {
 
 .contact-image {
   flex: 1;
-  max-width: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
+  display: flex; 
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  padding: 20px; 
 }
 
 .contact-image img {
-  width: 100%;
-  max-width: 250px;
-  height: auto;
-  object-fit: contain;
+  max-width: 100%; 
+  height: auto; 
+  object-fit: contain; 
 }
 
 .contact-info {
-  flex: 2;
+  flex: 1;
   padding: 20px;
-  text-align: left;
+  text-align: center; /* Center text inside the container */
 }
 
 .contact-info h2 {
@@ -289,7 +288,7 @@ h1, h2, p {
 
 .socials {
   display: flex;
-  justify-content: start;
+  justify-content: center; /* Center the social icons */
   align-items: center;
   gap: 15px;
   margin-top: 20px;
@@ -382,7 +381,7 @@ h1, h2, p {
   }
 
   .contact {
-    flex-direction: column;
+    flex-direction: column; /* Stack elements on small screens */
     text-align: center;
   }
 
@@ -392,5 +391,91 @@ h1, h2, p {
 
   .socials {
     justify-content: center;
+  }
+}
+
+/* Services Section */
+.services {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px;
+  background-color: #a78bfa; 
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.services-content {
+  flex: 1;
+  min-width: 300px;
+  padding: 20px;
+  text-align: center;
+}
+
+.services-content h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #01395D; /* Same color as other headings */
+}
+
+.services-content p {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #01395D; /* Same text color as About and Hero section */
+  line-height: 1.6;
+}
+
+.service-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.service-list li {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #01395D; 
+  font-weight: bold;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.service-list li:hover {
+  color: #d4ff65; /* Same hover color used for links */
+  transform: scale(1.1);
+}
+
+.services-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.services-image img {
+  max-width: 80%;
+  height: auto;
+  border-radius: 20px;
+  background-color: #f0f4f8; /* Matches background from other sections */
+  border: 20px solid #e4ff85; /* Consistent with image style */
+  object-fit: cover;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .services {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .services-content {
+    margin-bottom: 20px;
+  }
+
+  .services-image img {
+    width: 90%;
+    max-width: none;
   }
 }
