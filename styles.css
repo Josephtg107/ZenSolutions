@@ -327,7 +327,7 @@ h1, h2, p {
 /* Work Section */
 .work {
   padding: 50px 20px;
-  background-color: #e0e7ff;
+  background-color: #a78bfa;
   text-align: center;
   opacity: 0;
   transform: translateY(50px);
@@ -458,7 +458,7 @@ h1, h2, p {
   max-width: 80%;
   height: auto;
   border-radius: 20px;
-  background-color: #f0f4f8; /* Matches background from other sections */
+  background-color: #a78bfa; /* Matches background from other sections */
   border: 20px solid #e4ff85; /* Consistent with image style */
   object-fit: cover;
 }
@@ -475,6 +475,92 @@ h1, h2, p {
   }
 
   .services-image img {
+    width: 90%;
+    max-width: none;
+  }
+}
+
+/* Work Section */
+.work {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center; 
+  justify-content: space-between;
+  padding: 50px;
+  background-color: #a78bfa; 
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.work-content {
+  flex: 1;
+  min-width: 300px;
+  padding: 20px;
+  text-align: center;
+}
+
+.work-content h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #01395D; /* Same color as other headings */
+}
+
+.work-content p {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #01395D; 
+  line-height: 1.6;
+}
+
+.work-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.work-list li {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #01395D; 
+  font-weight: bold;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.work-list li:hover {
+  color: #d4ff65; 
+  transform: scale(1.1);
+}
+
+.work-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.work-image img {
+  max-width: 80%;
+  height: auto;
+  border-radius: 20px;
+  background-color: #d9f99d;
+  border: 20px solid #d9f99d; 
+  object-fit: cover;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .work {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .work-content {
+    margin-bottom: 20px;
+  }
+
+  .work-image img {
     width: 90%;
     max-width: none;
   }
