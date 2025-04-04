@@ -1,0 +1,530 @@
+/ Users/josegarcia/Documents/ZenSolutions/newStyle.css
+/* Reset default styles */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Navigation Bar */
+.navbar {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+/* Logo */
+.nav-logo-img {
+    height: 40px;
+    width: auto;
+}
+
+/* Navigation Links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.nav-links.left-links {
+    margin-left: 20px; /* Align left links next to the logo */
+}
+
+.nav-links.right-links {
+    margin-left: auto; /* Push right links to the far right */
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: black;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #b0d39e;
+}
+
+.menu-toggle {
+    font-size: 2rem;
+    color: black;
+    cursor: pointer;
+    display: none;
+    position: absolute; /* Ensure it stays within the navbar */
+    right: 102px;/* Reduce spacing from the right edge */
+    top: 50%; /* Center vertically within the navbar */
+    z-index: 101; /* Ensure it stays above other elements */
+}
+
+/* Gradient Background */
+.gradient-background {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to bottom, white, #b0d39e, #4c8c3f, #0b6404);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 20px; /* Offset for fixed navbar */
+}
+
+/* Text Styling */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: black;
+}
+
+p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    color: black;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .navbar {
+        padding: 15px 5%; /* Keeps a margin on smaller screens */
+    }
+
+    .menu-toggle {
+        display: block;
+        right: 65px; /* Adjust spacing for tablet dimensions */
+        top: 50%; /* Center vertically within the navbar */
+        transform: translateY(-50%);
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: white;
+        text-align: center;
+        padding: 10px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links a {
+        font-size: 0.9rem;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: white;
+        text-align: center;
+        padding: 10px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        padding: 10px 0;
+    }
+
+    .nav-logo-img {
+        height: 30px; /* Further reduce logo size for smaller screens */
+    }
+    
+    .nav-links a {
+        font-size: 0.8rem; /* Adjust font size for smaller screens */
+    }
+}
+
+/* Hero Section */
+.hero-section {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to bottom, white, #b0d39e, #4c8c3f, #0b6404);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 20px; /* Offset for fixed navbar */
+}
+
+.hero-section .hero-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px; /* Optional: Add rounded corners */
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    color: black;
+    margin-bottom: 30px;
+}
+
+.hero-section .cta-button {
+    background-color: #4c8c3f;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.hero-section .cta-button:hover {
+    background-color: #0b6404;
+}
+
+/* Responsive Design for Hero Section */
+@media (max-width: 768px) {
+    .hero-section .hero-image {
+        content: url("/NewImages/VerticalFirstPageInformation.png"); /* Replace image for mobile */
+        max-width: 90%; /* Adjust width for smaller screens */
+        height: auto;
+    }
+}
+
+/* Services Section */
+.services-section {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #0b6404;
+    margin-top: -30px; /* Bring it closer to the hero section */
+}
+
+.services-section h3 {
+    font-size: 2.5rem;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+}
+
+.services-section .services-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.service-card {
+    display: flex; /* Use flexbox for horizontal layout */
+    align-items: center; /* Center items vertically */
+    padding: 20px;
+    width: 100%; /* Adjust width to fit the container */
+    max-width: 600px; /* Optional: Limit the width of each card */
+    text-align: left; /* Align text to the left */
+    box-shadow: none !important; /* Remove any shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 auto; /* Center the cards */
+}
+
+.service-card img {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px; /* Add spacing between the image and text */
+}
+
+.service-card .text-container {
+    display: flex;
+    flex-direction: column; /* Stack h3 on top of p */
+}
+
+.service-card h3 {
+    font-size: 1.2rem;
+    color: #FFFFFF;
+    margin: 0; /* Remove default margin */
+}
+
+.service-card p {
+    font-size: 0.9rem;
+    color: #FFFFFF;
+    margin: 5px 0 0; /* Add spacing between h3 and p */
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Footer Section */
+.footer {
+    background-color: #0b6404;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer a {
+    color: #b0d39e;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 1rem;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .services-section .services-container {
+        flex-direction: column;
+        align-items: center; /* Center content on mobile */
+    }
+}
+
+/* Who We Are Section */
+.about-section {
+    padding: 60px 20px;
+    background: linear-gradient(to bottom, #b0d39e, #4c8c3f);
+    color: black;
+}
+
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+    padding-right: 20px;
+}
+
+.about-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.about-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.co-founders {
+    display: flex;
+    gap: 30px;
+}
+
+.founder {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.founder-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    border: 2px solid #4c8c3f;
+}
+
+.about-image {
+    flex: 1;
+    text-align: center;
+    min-width: 280px;
+}
+
+.about-image img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-text {
+        padding-right: 0;
+    }
+
+    .co-founders {
+        justify-content: center;
+    }
+}
+
+/* Contact Section */
+.contact-section {
+    padding: 60px 20px;
+    background-color: #0b6404;
+    color: white;
+}
+
+.contact-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-text {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+    padding-right: 20px;
+}
+
+.contact-text h2 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+}
+
+.contact-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.contact-method {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.follow-us {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.social-icons i {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    color: #b0d39e;
+    cursor: pointer;
+}
+
+.social-icons i:hover {
+    color: white;
+}
+
+.contact-image {
+    flex: 1;
+    text-align: center;
+    min-width: 280px;
+}
+
+.contact-image img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+    .contact-content {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .contact-text {
+        padding-right: 0;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+}
+
+/* Clients Section */
+.clients-section {
+    padding: 50px 20px;
+    background-color: #689f63;
+    text-align: center;
+}
+
+.clients-section h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.clients-carousel {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
+.clients-track {
+    display: flex;
+    gap: 80px;
+    animation: scrollClients 60s linear infinite;
+}
+
+.clients-track a img {
+    height: 80px;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.clients-track a img:hover {
+    transform: scale(1.1);
+}
+
+.clients-note {
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+/* Animation */
+@keyframes scrollClients {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
