@@ -28,12 +28,13 @@ body, html {
     z-index: 100;
 }
 
-.nav-links.left-links {
-    margin-left: 20px;
-}
-
-.nav-links.right-links {
+.nav-links {
     margin-left: auto;
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 /* Logo */
@@ -43,14 +44,6 @@ body, html {
 }
 
 /* Navigation Links */
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-    align-items: center;
-    margin-left: auto;
-}
-
 .nav-links li {
     display: inline;
 }
@@ -371,7 +364,9 @@ body, html {
         width: 100%;
         text-align: center;
         padding: 10px 0;
+        background-color: white;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 99;
     }
 
     .nav-links a {
@@ -392,31 +387,6 @@ body, html {
 
     .nav-links a {
         font-size: 0.8rem;
-    }
-
-    .nav-links.left-links,
-    .nav-links.right-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        text-align: center;
-        padding: 10px 0;
-        background-color: white;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        z-index: 99;
-    }
-
-    .nav-links.left-links.active,
-    .nav-links.right-links.active {
-        display: flex;
-    }
-
-    .nav-links.left-links li,
-    .nav-links.right-links li {
-        padding: 10px 0;
     }
 }
     

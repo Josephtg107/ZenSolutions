@@ -123,7 +123,33 @@ p {
         width: 100%;
         text-align: center;
         padding: 10px 0;
+        background-color: white;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.left-links,
+    .nav-links.right-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+        background-color: white;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 99;
+    }
+
+    .nav-links.left-links.active,
+    .nav-links.right-links.active {
+        display: flex;
+    }
+
+    .nav-links.left-links li,
+    .nav-links.right-links li {
+        padding: 10px 0;
     }
 
     .nav-links a {
