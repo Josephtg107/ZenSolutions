@@ -1,9 +1,14 @@
-/ Users/josegarcia/Documents/ZenSolutions/newStyle.css
 /* Reset default styles */
 body, html {
     height: 100%;
+    min-height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, white, #b0d39e, #4c8c3f, #0b6404);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-x: hidden;
 }
 
 /* Navigation Bar */
@@ -74,13 +79,13 @@ body, html {
 .gradient-background {
     width: 100%;
     height: 100vh;
-    background: linear-gradient(to bottom, white, #b0d39e, #4c8c3f, #0b6404);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
     padding-top: 20px; /* Offset for fixed navbar */
+    background: transparent;
 }
 
 /* Text Styling */
@@ -116,7 +121,6 @@ p {
         top: 60px;
         left: 0;
         width: 100%;
-        background: white;
         text-align: center;
         padding: 10px 0;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -139,7 +143,6 @@ p {
         top: 60px;
         left: 0;
         width: 100%;
-        background: white;
         text-align: center;
         padding: 10px 0;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -166,7 +169,7 @@ p {
 .hero-section {
     width: 100%;
     height: 100vh;
-    background: linear-gradient(to bottom, white, #b0d39e, #4c8c3f, #0b6404);
+    background: transparent;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -223,8 +226,8 @@ p {
 .services-section {
     padding: 50px 20px;
     text-align: center;
-    background-color: #0b6404;
-    margin-top: -30px; /* Bring it closer to the hero section */
+    margin-top: 100px;
+    background: transparent;
 }
 
 .services-section h3 {
@@ -264,14 +267,21 @@ p {
 }
 
 .service-card h3 {
-    font-size: 1.2rem;
-    color: #FFFFFF;
+    font-size: 2 rem;
+    color: #000000;
     margin: 0; /* Remove default margin */
+}
+
+.service-card h2 {
+    font-size: 2 rem;
+    color: #000000;
+    margin: 0; /* Remove default margin */
+    padding-left: 200px;
 }
 
 .service-card p {
     font-size: 0.9rem;
-    color: #FFFFFF;
+    color: #000000;
     margin: 5px 0 0; /* Add spacing between h3 and p */
 }
 
@@ -309,8 +319,8 @@ p {
 /* Who We Are Section */
 .about-section {
     padding: 60px 20px;
-    background: linear-gradient(to bottom, #b0d39e, #4c8c3f);
     color: black;
+    background: transparent;
 }
 
 .about-content {
@@ -390,8 +400,8 @@ p {
 /* Contact Section */
 .contact-section {
     padding: 60px 20px;
-    background-color: #0b6404;
     color: white;
+    background: transparent;
 }
 
 .contact-content {
@@ -413,12 +423,25 @@ p {
 .contact-text h2 {
     font-size: 2.2rem;
     margin-bottom: 15px;
+    color: #000000;
 }
 
 .contact-text p {
     font-size: 1rem;
     line-height: 1.6;
     margin-bottom: 20px;
+    color: #FFFFFF;
+}
+
+.contact-method {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.contact-info span {
+    color: #ccc;
 }
 
 .contact-methods {
@@ -428,20 +451,14 @@ p {
     margin-bottom: 30px;
 }
 
-.contact-method {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
 .follow-us {
     margin-bottom: 10px;
     font-weight: bold;
 }
 
 .social-icons i {
-    font-size: 1.5rem;
-    margin-right: 15px;
+    font-size: 2.5rem;
+    margin: 0 15px;
     color: #b0d39e;
     cursor: pointer;
 }
@@ -464,8 +481,9 @@ p {
 
 @media (max-width: 768px) {
     .contact-content {
-        flex-direction: column-reverse;
+        flex-direction: column;
         text-align: center;
+        gap: 30px;
     }
 
     .contact-text {
@@ -480,8 +498,8 @@ p {
 /* Clients Section */
 .clients-section {
     padding: 50px 20px;
-    background-color: #689f63;
     text-align: center;
+    background-color: #73a467;
 }
 
 .clients-section h2 {
@@ -514,9 +532,14 @@ p {
 
 .clients-note {
     font-weight: bold;
-    margin-top: 20px;
-    text-align: center;
+    margin: 30px auto 0;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.1rem;
+    color: black;
 }
 
 /* Animation */
@@ -527,4 +550,219 @@ p {
     100% {
         transform: translateX(-50%);
     }
+}
+
+.gradient-wrapper {
+    background: linear-gradient(to bottom, white, #b0d39e, #4c8c3f, #0b6404);
+    width: 100%;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+/* New rule for services list styling */
+.services-list {
+    list-style: none;
+    margin-top: 20px;
+    text-align: left;
+    padding-left: 210px;
+}
+
+.services-list li {
+    font-size: 1.1rem;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .services-list {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+/* Graphic Design Section */
+
+.audiovisual-content {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 60px;
+}
+.design-section {
+    padding: 60px 20px;
+    background: transparent;
+    color: black;
+}
+
+.reverse-card {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.design-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.design-list li {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+
+.audio-service-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+.audio-service-card img {
+    width: 60px;
+    height: 60px;
+}
+.audio-service-card h2 {
+    font-size: 2rem;
+    color: #000;
+    margin: 0;
+}
+.heading-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+.heading-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* Extra Services Title */
+.section-title {
+  text-align: center;
+  color: white;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+}
+
+/* Extra Services Section */
+.extra-services {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.extra-services-box {
+  background-color: #b6c9ae;
+  border-radius: 8px;
+  padding: 30px;
+  max-width: 600px;
+  width: 90%;
+  text-align: center;
+}
+
+.extra-services-box h3 {
+  color: black;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.includes-label {
+  color: black;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.extra-services-box p {
+  color: white;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Wedding Edition: Content Creation Section */
+.content-creation {
+  padding: 60px 20px;
+  background: transparent;
+  color: black;
+}
+
+.content-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 1300px;
+  margin: 0 auto;
+  gap: 40px;
+}
+
+.title-img {
+  width: 100%;
+  max-width: 600px;
+  display: block;
+  margin: 0 auto 40px auto;
+}
+
+.content-left {
+  flex: 1;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.content-left h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.content-left p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.checklist {
+  list-style: none;
+  padding-left: 0;
+}
+
+.checklist li {
+  font-size: 1rem;
+  margin-bottom: 12px;
+  color: #000;
+}
+
+.content-right {
+  flex: 1;
+  min-width: 280px;
+  text-align: center;
+}
+
+.side-img {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 20px;
+}
+
+.content-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  align-items: flex-start;
 }

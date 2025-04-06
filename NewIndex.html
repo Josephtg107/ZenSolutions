@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+  <div class="gradient-wrapper">
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="nav-logo">
@@ -15,7 +16,7 @@
         </div>
         <ul class="nav-links left-links">
             <li><a href="NewIndex.html#services-section">Who We Are</a></li>
-            <li><a href="#">Services</a></li>
+            <li><a href="/NewPage/NewServices.html">Services</a></li>
             <li><a href="#">Portfolio</a></li>
         </ul>
         <ul class="nav-links right-links">
@@ -31,7 +32,7 @@
     </div>
 
     <!-- Services Section -->
-    <section class="services-section" style="margin-top: -30px;">
+    <section class="services-section" style="margin-top: -30px; background: transparent;">
         <div class="services-container">
             <div class="service-card">
                 <img src="/NewImages/Icons/ZenMediaManager.png" alt="Service 1">
@@ -65,7 +66,7 @@
     </section>
 
     <!-- Who We Are Section -->
-    <section class="about-section">
+    <section class="about-section" style="background: transparent;">
         <div class="about-content">
             <div class="about-text">
                 <h2>Who we are ?</h2>
@@ -98,7 +99,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="contact-section">
+    <section class="contact-section" style="background: transparent;">
         <div class="contact-content">
             <div class="contact-image">
                 <img src="/NewImages/callusZenSolutions.png" alt="Call Us Zen Solutions">
@@ -106,18 +107,27 @@
             <div class="contact-text">
                 <h2>Let’s Connect and Create Together!</h2>
                 <p>Have a question or a project in mind? Reach out to us and we’ll get back to you shortly.</p>
-                <div class="contact-methods">
+                <div class="contact-box">
                     <div class="contact-method">
                         <img src="/NewImages/ZenEmail.png" alt="Email Icon" class="founder-img">
-                        <span>zen.solutions.design@gmail.com</span>
+                        <div class="contact-info">
+                            <strong>Email</strong><br>
+                            <span>zen.solutions.design@gmail.com</span>
+                        </div>
                     </div>
                     <div class="contact-method">
                         <img src="/NewImages/ZenWhatsApp.png" alt="Whatsapp Icon" class="founder-img">
-                        <span>+52 8671931737</span>
+                        <div class="contact-info">
+                            <strong>WhatsApp</strong><br>
+                            <span>+52 8671931737</span>
+                        </div>
                     </div>
                     <div class="contact-method">
                         <img src="/NewImages/ZenLocation.png" alt="Location Icon" class="founder-img">
-                        <span>Nuevo Laredo, Tamaulipas, México</span>
+                        <div class="contact-info">
+                            <strong>Location</strong><br>
+                            <span>Nuevo Laredo, Tamaulipas, México</span>
+                        </div>
                     </div>
                 </div>
                 <p class="follow-us">Follow us for updates and insights!</p>
@@ -154,16 +164,12 @@
         <p class="clients-note">Check out our work – just click the logo</p>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>Follow us for updates and insights!</p>
-    </footer>
-
     <script>
         // Mobile Menu Toggle
         document.querySelector(".menu-toggle").addEventListener("click", function() {
             document.querySelector(".nav-links").classList.toggle("active");
         });
     </script>
+  </div>
 </body>
 </html>
