@@ -661,6 +661,30 @@ p {
     color: #000;
     margin: 0;
 }
+
+.audio-guest-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 60px 20px 20px;
+    box-sizing: border-box;
+}
+
+.audio-guest-image img {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: 12px;
+    object-fit: contain;
+}
+
+@media (min-width: 1200px) {
+    .audio-guest-image img {
+        max-width: 1000px;
+    }
+}
+
 .heading-row {
     display: flex;
     align-items: center;
