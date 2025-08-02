@@ -847,6 +847,31 @@ p {
   border-radius: 20px;
 }
 
+/* New UI Button Styling */
+.new-ui-button {
+    display: inline-block;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.new-ui-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.new-ui-button img {
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.new-ui-button:hover img {
+    transform: scale(1.05);
+}
+
 .content-columns {
   display: flex;
   flex-wrap: wrap;
