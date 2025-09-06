@@ -824,6 +824,17 @@ body {
   box-shadow: var(--shadow-md);
 }
 
+/* ===== MOBILE/TOUCH FALLBACKS (no hover) ===== */
+@media (hover: none) {
+  .work-item { transform: none !important; }
+  .work-item:hover { transform: none !important; }
+  .work-image img { transform: none !important; }
+  .work-item:hover .work-image img { transform: none !important; }
+  .work-overlay { opacity: 1 !important; }
+  .work-item:hover .work-overlay { opacity: 1 !important; }
+  .work-link:hover { transform: none !important; box-shadow: none !important; }
+}
+
 /* ===== CONTACT SECTION ===== */
 .contact {
   background: var(--white);

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -113,10 +113,10 @@
         </a>
       </div>
       <div class="nav-menu" id="navMenu">
-        <a href="../index-new.html#about" class="nav-link" data-en="About" data-es="Nosotros">About</a>
-        <a href="../index-new.html#services" class="nav-link" data-en="Services" data-es="Servicios">Services</a>
-        <a href="../index-new.html#work" class="nav-link" data-en="Work" data-es="Trabajo">Work</a>
-        <a href="../index-new.html#contact" class="nav-link" data-en="Contact" data-es="Contacto">Contact</a>
+        <a href="../index-new.html#about" class="nav-link" data-en="About" data-es="Nosotros">Nosotros</a>
+        <a href="../index-new.html#services" class="nav-link" data-en="Services" data-es="Servicios">Servicios</a>
+        <a href="../index-new.html#work" class="nav-link" data-en="Work" data-es="Trabajo">Trabajo</a>
+        <a href="../index-new.html#contact" class="nav-link" data-en="Contact" data-es="Contacto">Contacto</a>
       </div>
       <div class="nav-toggle" id="navToggle">
         <span></span>
@@ -126,29 +126,80 @@
     </div>
   </nav>
   <div class="tools-hero">
-    <h1>Zen Solutions Tools</h1>
-    <p>Free, private, and instant file converters. No uploads, no tracking, just results.</p>
-    <p style="font-size:0.98rem;color:var(--primary-purple);">More tools coming soon!</p>
+    <h1 data-en="Zen Online Tools" data-es="Herramientas en Línea de Zen">Herramientas en Línea de Zen</h1>
+    <p data-en="Free, private, and instant file converters. No uploads, no tracking, just results." data-es="Convertidores de archivos gratuitos, privados e instantáneos. Sin subidas, sin rastreo, solo resultados.">Convertidores de archivos gratuitos, privados e instantáneos. Sin subidas, sin rastreo, solo resultados.</p>
+    <p style="font-size:0.98rem;color:var(--primary-purple);" data-en="More tools coming soon!" data-es="¡Más herramientas muy pronto!">¡Más herramientas muy pronto!</p>
   </div>
   <section class="tools-section section-container" style="padding-top:1.5rem;">
-    <h2>Image to PDF Converter</h2>
-    <p style="margin-bottom:1.2rem;">Convert your PNG or JPG images to PDF right in your browser.</p>
+    <h2 data-en="Image to PDF Converter" data-es="Convertir Imagen a PDF">Convertir Imagen a PDF</h2>
+    <p style="margin-bottom:1.2rem;" data-en="Convert your PNG or JPG images to PDF right in your browser." data-es="Convierte tus imágenes PNG o JPG a PDF directamente en tu navegador.">Convierte tus imágenes PNG o JPG a PDF directamente en tu navegador.</p>
     <input type="file" id="imgInput" accept="image/png, image/jpeg">
     <br>
-    <button onclick="convertToPDF()">Convert to PDF</button>
+    <button id="convertBtn" onclick="convertToPDF()" data-en="Convert to PDF" data-es="Convertir a PDF">Convertir a PDF</button>
     <div class="result" id="result"></div>
   </section>
   <div class="tools-footer">
-    &copy; 2025 Zen Solutions. Powered by browser technology. <a href="../index-new.html" style="color:var(--primary-purple);text-decoration:none;">Back to Home</a>
+    &copy; 2025 Zen Solutions. <span data-en="Powered by browser technology." data-es="Desarrollado con tecnología del navegador.">Desarrollado con tecnología del navegador.</span> <a href="../index-new.html" style="color:var(--primary-purple);text-decoration:none;" data-en="Back to Home" data-es="Volver al Inicio">Volver al Inicio</a>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
+    // ===== Mobile navbar (Tools page only) =====
+    (function initToolsNavbar(){
+      const navToggle = document.getElementById('navToggle');
+      const navMenu = document.getElementById('navMenu');
+      if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+          navMenu.classList.toggle('active');
+          navToggle.classList.toggle('active');
+          document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        });
+        // Close on link click
+        navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+          navMenu.classList.remove('active');
+          navToggle.classList.remove('active');
+          document.body.style.overflow = '';
+        }));
+      }
+    })();
+
+    // ===== Language handling (default Spanish, auto English) =====
+    let currentLanguage = 'es';
+    const i18n = {
+      en: {
+        selectImage: 'Please select an image file.',
+        pdfReady: 'Your PDF is ready! Check your downloads.'
+      },
+      es: {
+        selectImage: 'Por favor selecciona un archivo de imagen.',
+        pdfReady: '¡Tu PDF está listo! Revisa tus descargas.'
+      }
+    };
+
+    function detectLanguage() {
+      const userLang = navigator.language || navigator.userLanguage || '';
+      return userLang.toLowerCase().startsWith('es') ? 'es' : 'en';
+    }
+
+    function setLanguage(lang) {
+      currentLanguage = lang;
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-en]').forEach(el => {
+        const text = el.getAttribute(`data-${lang}`);
+        if (text) el.textContent = text;
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      setLanguage(detectLanguage());
+    });
+
+    // ===== Converter =====
     function convertToPDF() {
       const file = document.getElementById('imgInput').files[0];
       const result = document.getElementById('result');
       result.textContent = '';
       if (!file) {
-        result.textContent = 'Please select an image file.';
+        result.textContent = i18n[currentLanguage].selectImage;
         return;
       }
       const reader = new FileReader();
@@ -166,7 +217,7 @@
           }
           pdf.addImage(img, 'PNG', 10, 10, width, height);
           pdf.save('converted.pdf');
-          result.textContent = 'Your PDF is ready! Check your downloads.';
+          result.textContent = i18n[currentLanguage].pdfReady;
         };
         img.src = e.target.result;
       };
