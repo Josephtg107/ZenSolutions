@@ -139,19 +139,29 @@ document.querySelectorAll('.service-card').forEach(card => {
 });
 
 // ===== WORK ITEMS INTERACTION =====
-document.querySelectorAll('.work-item').forEach(item => {
-  item.addEventListener('mouseenter', () => {
-    const overlay = item.querySelector('.work-overlay');
-    if (overlay) {
-      overlay.style.opacity = '1';
-    }
-  });
-  
-  item.addEventListener('mouseleave', () => {
-    const overlay = item.querySelector('.work-overlay');
-    if (overlay) {
-      overlay.style.opacity = '0';
-    }
+// Only attach hover behaviors on devices that support hover
+document.addEventListener('DOMContentLoaded', () => {
+  const supportsHover = window.matchMedia('(hover: hover)').matches;
+  document.querySelectorAll('.work-item').forEach(item => {
+    // Keep Online Tools overlay always visible on all devices
+    const isOnlineTools = item.dataset.project === 'onlinetools';
+    if (isOnlineTools) return; // Do not override with JS
+
+    if (!supportsHover) return; // Mobile/touch: CSS keeps overlay visible
+
+    item.addEventListener('mouseenter', () => {
+      const overlay = item.querySelector('.work-overlay');
+      if (overlay) {
+        overlay.style.opacity = '1';
+      }
+    });
+    
+    item.addEventListener('mouseleave', () => {
+      const overlay = item.querySelector('.work-overlay');
+      if (overlay) {
+        overlay.style.opacity = '0';
+      }
+    });
   });
 });
 
@@ -164,6 +174,7 @@ function animateCounters() {
     const isPercentage = target.includes('%');
     const isPlus = target.includes('+');
     const isSlash = target.includes('/');
+    const isX = /x/i.test(target);
     
     let numericTarget;
     if (isPercentage) {
@@ -173,6 +184,8 @@ function animateCounters() {
     } else if (isSlash) {
       // For 24/7, just animate the first number
       numericTarget = 24;
+    } else if (isX) {
+      numericTarget = parseInt(target.replace(/x/i, ''));
     } else {
       numericTarget = parseInt(target);
     }
@@ -192,6 +205,8 @@ function animateCounters() {
         counter.textContent = Math.floor(current) + '+';
       } else if (isSlash) {
         counter.textContent = Math.floor(current) + '/7';
+      } else if (isX) {
+        counter.textContent = Math.floor(current) + 'X';
       } else {
         counter.textContent = Math.floor(current);
       }
@@ -216,8 +231,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// ===== CURSOR EFFECTS =====
+// ===== CURSOR EFFECTS (disabled on mobile/touch) =====
 document.addEventListener('DOMContentLoaded', () => {
+  const supportsFineHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (!supportsFineHover) {
+    // Do not create the custom cursor on touch/mobile
+    return;
+  }
+
   // Create custom cursor
   const cursor = document.createElement('div');
   cursor.className = 'custom-cursor';
@@ -251,6 +272,10 @@ document.addEventListener('DOMContentLoaded', () => {
       cursor.style.transform = 'scale(1)';
     });
   });
+
+  // Safety: hide cursor if a touch interaction occurs
+  const hideOnTouch = () => { if (cursor) cursor.style.display = 'none'; };
+  window.addEventListener('touchstart', hideOnTouch, { passive: true });
 });
 
 // ===== SCROLL PROGRESS INDICATOR =====
