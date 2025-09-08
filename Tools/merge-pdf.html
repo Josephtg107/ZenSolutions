@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unir PDF – Zen Tools</title>
+  <link rel="icon" href="../Icon/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles-new.css">
+  <style>
+    body { min-height: 100vh; margin: 0; }
+    .tools-hero { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:6rem 1rem 2rem 1rem; background: linear-gradient(135deg, rgba(167,139,250,0.10) 0%, rgba(212,255,101,0.10) 100%); border-radius:0 0 2rem 2rem; box-shadow: var(--shadow-md); text-align:center; }
+    .tools-hero h1 { font-size:2rem; font-weight:800; color:var(--dark-blue); margin:0 0 .25rem 0; }
+    .tools-hero p { color:var(--gray-700); font-size:1.05rem; max-width:720px; }
+
+    .merge { max-width: 900px; margin: 2rem auto 0 auto; background: var(--white); border-radius: var(--radius-2xl); box-shadow: var(--shadow-xl); padding: 1.25rem; border: 1px solid var(--gray-200); }
+    .merge h2 { font-size:1.3rem; font-weight:700; color:var(--dark-blue); margin: .5rem 0 1rem 0; text-align:center; }
+    .controls { display:flex; flex-wrap:wrap; gap: .75rem; align-items:center; justify-content:center; margin-bottom: 1rem; }
+    .dropzone { border: 2px dashed var(--gray-300); border-radius: 14px; padding: 1rem; text-align:center; color: var(--gray-600); background: var(--gray-50); }
+    .dropzone.drag { border-color: var(--primary-purple); background: #f7f5ff; }
+    .file-input { display:none; }
+    .btn { padding:.6rem 1rem; border-radius:999px; background: var(--dark-blue); color:#fff; border:none; font-weight:600; cursor:pointer; }
+    .btn.secondary { background: var(--gray-500); }
+    .btn:disabled { opacity:.6; cursor:not-allowed; }
+
+    .list { margin-top: 1rem; }
+    .row { display:flex; align-items:center; justify-content:space-between; gap:.5rem; border:1px solid var(--gray-200); background: var(--white); padding:.6rem .75rem; border-radius: 10px; box-shadow: var(--shadow-sm); margin-bottom:.5rem; }
+    .row .name { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--dark-blue); font-weight:600; }
+    .row .actions { display:flex; gap:.4rem; }
+    .row button { padding:.35rem .6rem; border-radius:8px; border:1px solid var(--gray-300); background: var(--gray-100); cursor:pointer; }
+    .result { text-align:center; margin-top: .75rem; color: var(--primary-purple); font-weight:600; }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <a href="../index-new.html#hero">
+          <img src="../images/ZenMiniLogo-cutout.png" alt="Zen Solutions">
+        </a>
+      </div>
+      <div class="nav-menu" id="navMenu">
+        <a href="../index-new.html#about" class="nav-link" data-en="About" data-es="Nosotros">Nosotros</a>
+        <a href="../index-new.html#services" class="nav-link" data-en="Services" data-es="Servicios">Servicios</a>
+        <a href="../index-new.html#work" class="nav-link" data-en="Work" data-es="Trabajo">Trabajo</a>
+        <a href="/Tools/tools.html" class="nav-link" data-en="Tools" data-es="Herramientas">Herramientas</a>
+        <a href="../index-new.html#contact" class="nav-link" data-en="Contact" data-es="Contacto">Contacto</a>
+      </div>
+      <div class="nav-toggle" id="navToggle"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+
+  <header class="tools-hero">
+    <h1 data-en="Merge PDF" data-es="Unir PDF">Unir PDF</h1>
+    <p data-en="Combine multiple PDF files into one, right in your browser. No uploads required." data-es="Combina varios archivos PDF en uno, directamente en tu navegador. Sin subir archivos.">Combina varios archivos PDF en uno, directamente en tu navegador. Sin subir archivos.</p>
+  </header>
+
+  <section class="merge section-container">
+    <h2 data-en="Add your PDFs and set the order" data-es="Agrega tus PDFs y define el orden">Agrega tus PDFs y define el orden</h2>
+    <div class="controls">
+      <label for="fileInput" class="btn" data-en="Select PDFs" data-es="Seleccionar PDFs">Seleccionar PDFs</label>
+      <input id="fileInput" type="file" class="file-input" accept="application/pdf" multiple>
+      <button class="btn secondary" id="clearBtn" data-en="Clear" data-es="Limpiar">Limpiar</button>
+      <button class="btn" id="mergeBtn" disabled data-en="Merge" data-es="Unir">Unir</button>
+    </div>
+    <div id="dropzone" class="dropzone" data-en="or drag and drop PDFs here" data-es="o arrastra y suelta PDFs aquí">o arrastra y suelta PDFs aquí</div>
+    <div class="list" id="fileList"></div>
+    <div class="result" id="result"></div>
+    <div style="text-align:center;margin-top:1rem;">
+      <a href="/Tools/tools.html" style="color:var(--primary-purple);text-decoration:none;font-weight:600;" data-en="Back to Tools" data-es="Volver a Herramientas">Volver a Herramientas</a>
+    </div>
+  </section>
+
+  <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+  <script>
+    // Navbar mobile toggle
+    (function init(){
+      const navToggle = document.getElementById('navToggle');
+      const navMenu = document.getElementById('navMenu');
+      if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+          navMenu.classList.toggle('active');
+          navToggle.classList.toggle('active');
+          document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        });
+        navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+          navMenu.classList.remove('active');
+          navToggle.classList.remove('active');
+          document.body.style.overflow = '';
+        }));
+      }
+    })();
+
+    // Language handling
+    function detectLanguage(){ const l = navigator.language || navigator.userLanguage || ''; return l.toLowerCase().startsWith('es') ? 'es' : 'en'; }
+    function setLanguage(lang){ document.documentElement.lang = lang; document.querySelectorAll('[data-en]').forEach(el => { const t = el.getAttribute(`data-${lang}`); if (t) el.textContent = t; }); }
+    document.addEventListener('DOMContentLoaded', () => setLanguage(detectLanguage()));
+
+    // Merge logic
+    const fileInput = document.getElementById('fileInput');
+    const fileListEl = document.getElementById('fileList');
+    const mergeBtn = document.getElementById('mergeBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const dropzone = document.getElementById('dropzone');
+    const result = document.getElementById('result');
+
+    let files = []; // array of File
+
+    function addFiles(newFiles) {
+      for (const f of newFiles) {
+        if (f.type === 'application/pdf') files.push(f);
+      }
+      renderList();
+    }
+
+    function renderList() {
+      fileListEl.innerHTML = '';
+      files.forEach((f, idx) => {
+        const row = document.createElement('div');
+        row.className = 'row';
+        row.innerHTML = `
+          <div class="name">${idx+1}. ${f.name}</div>
+          <div class="actions">
+            <button data-action="up" data-idx="${idx}" aria-label="Up">↑</button>
+            <button data-action="down" data-idx="${idx}" aria-label="Down">↓</button>
+            <button data-action="remove" data-idx="${idx}" aria-label="Remove">✕</button>
+          </div>
+        `;
+        fileListEl.appendChild(row);
+      });
+      mergeBtn.disabled = files.length < 2;
+    }
+
+    fileListEl.addEventListener('click', (e) => {
+      const btn = e.target.closest('button');
+      if (!btn) return;
+      const idx = parseInt(btn.dataset.idx);
+      const action = btn.dataset.action;
+      if (action === 'remove') files.splice(idx, 1);
+      else if (action === 'up' && idx > 0) [files[idx-1], files[idx]] = [files[idx], files[idx-1]];
+      else if (action === 'down' && idx < files.length-1) [files[idx+1], files[idx]] = [files[idx], files[idx+1]];
+      renderList();
+    });
+
+    fileInput.addEventListener('change', (e) => { addFiles(e.target.files); fileInput.value = ''; });
+    clearBtn.addEventListener('click', () => { files = []; renderList(); result.textContent = ''; });
+
+    ;['dragenter','dragover'].forEach(evt => dropzone.addEventListener(evt, (e)=>{ e.preventDefault(); e.stopPropagation(); dropzone.classList.add('drag'); }));
+    ;['dragleave','drop'].forEach(evt => dropzone.addEventListener(evt, (e)=>{ e.preventDefault(); e.stopPropagation(); dropzone.classList.remove('drag'); }));
+    dropzone.addEventListener('drop', (e) => { const dt = e.dataTransfer; if (dt?.files) addFiles(dt.files); });
+
+    mergeBtn.addEventListener('click', async () => {
+      if (files.length < 2) return;
+      result.textContent = 'Uniendo PDFs…';
+      try {
+        const PDFNS = window.PDFLib || window.pdfLib || window['pdf-lib'];
+        if (!PDFNS) throw new Error('PDF library not loaded');
+        const { PDFDocument } = PDFNS;
+        const outDoc = await PDFDocument.create();
+        for (const f of files) {
+          const bytes = await f.arrayBuffer();
+          const src = await PDFDocument.load(bytes);
+          const pages = await outDoc.copyPages(src, src.getPageIndices());
+          pages.forEach(p => outDoc.addPage(p));
+        }
+        const mergedBytes = await outDoc.save({
+          addDefaultPage: false
+        });
+        const blob = new Blob([mergedBytes], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = 'merged.pdf'; a.click();
+        setTimeout(()=> URL.revokeObjectURL(url), 1000);
+        result.textContent = '¡Listo! Se descargó merged.pdf';
+      } catch (err) {
+        console.error(err);
+        result.textContent = 'Ocurrió un error al unir los PDFs: ' + (err && err.message ? err.message : 'desconocido');
+      }
+    });
+  </script>
+</body>
+</html>

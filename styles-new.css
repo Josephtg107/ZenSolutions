@@ -824,6 +824,35 @@ body {
   box-shadow: var(--shadow-md);
 }
 
+/* ===== MOBILE/TOUCH FALLBACKS (no hover) ===== */
+@media (hover: none) {
+  .work-item { transform: none !important; }
+  .work-item:hover { transform: none !important; }
+  .work-image img { transform: none !important; }
+  .work-item:hover .work-image img { transform: none !important; }
+  .work-overlay { opacity: 1 !important; }
+  .work-item:hover .work-overlay { opacity: 1 !important; }
+  .work-link:hover { transform: none !important; box-shadow: none !important; }
+  .custom-cursor { display: none !important; }
+}
+
+/* Always show overlay for Online Tools on all devices */
+.work-item[data-project="onlinetools"] .work-overlay {
+  opacity: 1 !important;
+}
+.work-item[data-project="onlinetools"] .work-image img {
+  transform: none !important;
+}
+.work-item[data-project="onlinetools"] .work-details {
+  padding: calc(var(--space-6) + 8px);
+}
+
+/* Width-based fallback for older mobile browsers */
+@media (max-width: 768px) {
+  .work-overlay { opacity: 1; }
+  .work-image img { transform: none; }
+}
+
 /* ===== CONTACT SECTION ===== */
 .contact {
   background: var(--white);
