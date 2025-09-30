@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estrategia de Marketing - Zen Solutions</title>
+  <link rel="icon" href="../Icon/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles-new.css">
+  <style>
+    .service-hero {
+      background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-green) 100%);
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .service-hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+      align-items: center;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .service-hero-text h1 {
+      font-size: var(--font-size-6xl);
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: var(--space-6);
+    }
+    
+    .service-hero-text p {
+      font-size: var(--font-size-xl);
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: var(--space-8);
+    }
+    
+    .service-visual {
+      position: relative;
+    }
+    
+    .service-image-container {
+      position: relative;
+      border-radius: var(--radius-3xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-2xl);
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: var(--space-4);
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .service-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: var(--radius-3xl);
+      margin: 0 auto;
+      max-width: 500px;
+      object-fit: cover;
+    }
+    
+    .placeholder-content {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.7);
+      padding: var(--space-8);
+    }
+    
+    .placeholder-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-4);
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-8);
+      margin: var(--space-16) 0;
+    }
+    
+    .feature-card {
+      background: var(--white);
+      padding: var(--space-8);
+      border-radius: var(--radius-2xl);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--gray-200);
+      transition: all var(--transition-normal);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-xl);
+    }
+    
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--primary-purple), var(--primary-green));
+      border-radius: var(--radius-xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--space-6);
+      color: var(--white);
+    }
+    
+    .process-section {
+      background: var(--gray-50);
+      padding: var(--space-32) 0;
+    }
+    
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-8);
+      margin-top: var(--space-16);
+    }
+    
+    .process-step {
+      text-align: center;
+      padding: var(--space-6);
+    }
+    
+    .step-number {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--primary-purple), var(--primary-green));
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-4);
+      color: var(--white);
+      font-weight: 700;
+      font-size: var(--font-size-xl);
+    }
+    
+    @media (max-width: 768px) {
+      .service-hero-content {
+        grid-template-columns: 1fr;
+        gap: var(--space-8);
+        text-align: center;
+      }
+      
+      .service-hero-text h1 {
+        font-size: var(--font-size-4xl);
+      }
+      
+      .service-hero-text p {
+        font-size: var(--font-size-lg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <a href="../index-new.html">
+          <img src="../images/ZenMiniLogo-cutout.png" alt="Zen Solutions">
+        </a>
+      </div>
+      
+      <div class="nav-menu" id="navMenu">
+        <a href="../index-new.html#services" class="nav-link">Servicios</a>
+        <a href="../index-new.html#work" class="nav-link">Trabajo</a>
+        <a href="../Tools/tools.html" class="nav-link">Herramientas</a>
+        <a href="../index-new.html#contact" class="nav-link">Contacto</a>
+      </div>
+
+      <div class="nav-toggle" id="navToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Service Hero Section -->
+  <section class="service-hero">
+    <div class="service-hero-content">
+      <div class="service-hero-text">
+        <h1>Estrategia de Marketing</h1>
+        <p>Campañas de marketing basadas en datos que conectan con tu audiencia y generan resultados. Creamos estrategias integrales que transforman tus objetivos comerciales en éxito medible.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Comenzar</a>
+          <a href="#process" class="btn btn-secondary">Nuestro Proceso</a>
+        </div>
+      </div>
+      
+      <div class="service-visual">
+        <div class="service-image-container">
+          <div class="placeholder-content">
+            <div class="placeholder-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 40px; height: 40px;">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <h3>Video de Marketing Próximamente</h3>
+            <p>Estamos creando un increíble video showcase de nuestras estrategias de marketing y resultados.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="services">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Lo Que Ofrecemos</h2>
+        <p class="section-subtitle">Soluciones de marketing integrales adaptadas a las necesidades de tu negocio</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 3h18v18H3zM9 9h6v6H9z"/>
+            </svg>
+          </div>
+          <h3>Marketing en Redes Sociales</h3>
+          <p>Campañas estratégicas en redes sociales en todas las plataformas para construir la presencia de tu marca y conectar con tu audiencia objetivo.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            </svg>
+          </div>
+          <h3>Estrategia de Contenido</h3>
+          <p>Contenido convincente que cuenta tu historia y genera engagement en todos los canales de marketing.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 19c-5 0-9-4-9-9s4-9 9-9 9 4 9 9-4 9-9 9zM21 3l-6 6"/>
+            </svg>
+          </div>
+          <h3>Analytics y Reportes</h3>
+          <p>Insights basados en datos y reportes integrales para rastrear el rendimiento de tu marketing y ROI.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section id="process" class="process-section">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Nuestro Proceso</h2>
+        <p class="section-subtitle">Cómo creamos estrategias de marketing exitosas</p>
+      </div>
+      
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <h3>Descubrimiento</h3>
+          <p>Analizamos tu negocio, audiencia objetivo y esfuerzos de marketing actuales para entender tus necesidades únicas.</p>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <h3>Estrategia</h3>
+          <p>Desarrollamos una estrategia de marketing integral adaptada a tus objetivos y presupuesto.</p>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <h3>Implementación</h3>
+          <p>Ejecutamos la estrategia en todos los canales con mensajes y branding consistentes.</p>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <h3>Optimización</h3>
+          <p>Monitoreamos, analizamos y optimizamos continuamente las campañas para máximo rendimiento.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="section-container">
+      <div class="contact-content">
+        <div class="contact-info">
+          <div class="section-header">
+            <h2 class="section-title">¿Listo para Transformar tu Marketing?</h2>
+            <p class="section-subtitle">Hablemos sobre cómo podemos ayudarte a alcanzar tus objetivos de marketing</p>
+          </div>
+          
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </div>
+              <div class="contact-text">
+                <h3>Correo</h3>
+                <a href="mailto:zensolutions.designs@gmail.com">zensolutions.designs@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="contact-visual">
+          <div class="contact-image-container">
+            <div class="placeholder-content">
+              <div class="placeholder-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 40px; height: 40px;">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+              </div>
+              <h3>Imagen de Marketing Próximamente</h3>
+              <p>Estamos preparando contenido visual que muestra nuestra experiencia en marketing.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="../images/ZenMiniLogo-cutout.png" alt="Zen Solutions">
+      </div>
+      <p class="footer-text">© 2025 Zen Solutions. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="../script-new.js"></script>
+</body>
+</html>

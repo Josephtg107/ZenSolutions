@@ -75,7 +75,7 @@
   --radius-full: 9999px;
   
   /* Transitions */
-  --transition-fast: 150ms ease-out;
+  --transition-fast: 200ms ease-out;
   --transition-normal: 300ms ease-out;
   --transition-slow: 500ms ease-out;
   --transition-bounce: 300ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -437,6 +437,9 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
   padding: var(--space-4);
   min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero-image {
@@ -447,6 +450,8 @@ body {
   opacity: 1;
   max-width: 500px;
   object-fit: cover;
+  border-radius: var(--radius-3xl);
+  margin: 0 auto;
 }
 
 .hero-image-container:hover .hero-image {
@@ -673,6 +678,9 @@ body {
   transition: all var(--transition-normal);
   position: relative;
   overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 .service-card::before {
@@ -827,14 +835,21 @@ body {
 
 /* ===== MOBILE/TOUCH FALLBACKS (no hover) ===== */
 @media (hover: none) {
-  .work-item { transform: none !important; }
+  .work-item { 
+    transform: none !important; 
+    will-change: auto !important;
+  }
   .work-item:hover { transform: none !important; }
-  .work-image img { transform: none !important; }
+  .work-image img { 
+    transform: none !important; 
+    will-change: auto !important;
+  }
   .work-item:hover .work-image img { transform: none !important; }
   .work-overlay { opacity: 1 !important; }
   .work-item:hover .work-overlay { opacity: 1 !important; }
   .work-link:hover { transform: none !important; box-shadow: none !important; }
   .custom-cursor { display: none !important; }
+  
 }
 
 /* Always show overlay for Online Tools on all devices */
@@ -1072,6 +1087,7 @@ body {
   }
 }
 
+
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 1024px) {
   .hero-content {
@@ -1196,4 +1212,6 @@ body {
     padding: var(--space-3) var(--space-6);
     font-size: var(--font-size-sm);
   }
-} 
+  
+}
+

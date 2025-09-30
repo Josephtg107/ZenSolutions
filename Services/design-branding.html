@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diseño y Branding - Zen Solutions</title>
+  <link rel="icon" href="../Icon/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles-new.css">
+  <style>
+    .service-hero {
+      background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-green) 100%);
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .service-hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+      align-items: center;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .service-hero-text h1 {
+      font-size: var(--font-size-6xl);
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: var(--space-6);
+    }
+    
+    .service-hero-text p {
+      font-size: var(--font-size-xl);
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: var(--space-8);
+    }
+    
+    .service-visual {
+      position: relative;
+    }
+    
+    .service-image-container {
+      position: relative;
+      border-radius: var(--radius-3xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-2xl);
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: var(--space-4);
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .service-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: var(--radius-3xl);
+      margin: 0 auto;
+      max-width: 500px;
+      object-fit: cover;
+    }
+    
+    .placeholder-content {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.7);
+      padding: var(--space-8);
+    }
+    
+    .placeholder-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-4);
+    }
+    
+    .portfolio-showcase {
+      background: var(--gray-50);
+      padding: var(--space-32) 0;
+    }
+    
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-8);
+      margin-top: var(--space-16);
+    }
+    
+    .portfolio-item {
+      background: var(--white);
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all var(--transition-normal);
+    }
+    
+    .portfolio-item:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-xl);
+    }
+    
+    .portfolio-image {
+      height: 200px;
+      background: linear-gradient(135deg, var(--primary-purple), var(--primary-green));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: var(--font-size-lg);
+      font-weight: 600;
+    }
+    
+    .portfolio-content {
+      padding: var(--space-6);
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-8);
+      margin: var(--space-16) 0;
+    }
+    
+    .feature-card {
+      background: var(--white);
+      padding: var(--space-8);
+      border-radius: var(--radius-2xl);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--gray-200);
+      transition: all var(--transition-normal);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-xl);
+    }
+    
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--primary-purple), var(--primary-green));
+      border-radius: var(--radius-xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--space-6);
+      color: var(--white);
+    }
+    
+    .process-section {
+      background: var(--white);
+      padding: var(--space-32) 0;
+    }
+    
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-8);
+      margin-top: var(--space-16);
+    }
+    
+    .process-step {
+      text-align: center;
+      padding: var(--space-6);
+    }
+    
+    .step-number {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--primary-purple), var(--primary-green));
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-4);
+      color: var(--white);
+      font-weight: 700;
+      font-size: var(--font-size-xl);
+    }
+    
+    @media (max-width: 768px) {
+      .service-hero-content {
+        grid-template-columns: 1fr;
+        gap: var(--space-8);
+        text-align: center;
+      }
+      
+      .service-hero-text h1 {
+        font-size: var(--font-size-4xl);
+      }
+      
+      .service-hero-text p {
+        font-size: var(--font-size-lg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <a href="../index-new.html">
+          <img src="../images/ZenMiniLogo-cutout.png" alt="Zen Solutions">
+        </a>
+      </div>
+      
+      <div class="nav-menu" id="navMenu">
+        <a href="../index-new.html#services" class="nav-link">Servicios</a>
+        <a href="../index-new.html#work" class="nav-link">Trabajo</a>
+        <a href="../Tools/tools.html" class="nav-link">Herramientas</a>
+        <a href="../index-new.html#contact" class="nav-link">Contacto</a>
+      </div>
+
+      <div class="nav-toggle" id="navToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Service Hero Section -->
+  <section class="service-hero">
+    <div class="service-hero-content">
+      <div class="service-hero-text">
+        <h1>Diseño y Branding</h1>
+        <p>Diseños hermosos y funcionales que cuentan tu historia y fortalecen tu marca. Creamos identidades visuales que resuenan con tu audiencia y impulsan el éxito empresarial.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Iniciar tu Marca</a>
+          <a href="#portfolio" class="btn btn-secondary">Ver Portfolio</a>
+        </div>
+      </div>
+      
+      <div class="service-visual">
+        <div class="service-image-container">
+          <div class="placeholder-content">
+            <div class="placeholder-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 40px; height: 40px;">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+                <path d="M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <h3>Showcase de Diseño Próximamente</h3>
+            <p>Estamos creando una galería visual de nuestro trabajo de diseño y proyectos de branding.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Showcase Section -->
+  <section id="portfolio" class="portfolio-showcase">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Nuestro Portfolio de Diseño</h2>
+        <p class="section-subtitle">Una mirada a nuestro trabajo creativo y proceso de diseño</p>
+      </div>
+      
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <div class="portfolio-image">Logo Design</div>
+          <div class="portfolio-content">
+            <h3>Brand Identity</h3>
+            <p>Complete logo design and brand identity packages that capture your unique essence.</p>
+          </div>
+        </div>
+        
+        <div class="portfolio-item">
+          <div class="portfolio-image">Web Design</div>
+          <div class="portfolio-content">
+            <h3>Website Design</h3>
+            <p>Modern, responsive website designs that provide exceptional user experiences.</p>
+          </div>
+        </div>
+        
+        <div class="portfolio-item">
+          <div class="portfolio-image">Print Design</div>
+          <div class="portfolio-content">
+            <h3>Print Materials</h3>
+            <p>Business cards, brochures, and marketing materials that make a lasting impression.</p>
+          </div>
+        </div>
+        
+        <div class="portfolio-item">
+          <div class="portfolio-image">Social Media</div>
+          <div class="portfolio-content">
+            <h3>Social Media Graphics</h3>
+            <p>Eye-catching social media content and graphics that engage your audience.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="services">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Servicios de Diseño</h2>
+        <p class="section-subtitle">Soluciones de diseño integrales para cada necesidad de marca</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          </div>
+          <h3>Brand Identity</h3>
+          <p>Complete brand identity design including logos, color palettes, typography, and brand guidelines.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          </div>
+          <h3>UI/UX Design</h3>
+          <p>User interface and experience design for websites and mobile applications.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          </div>
+          <h3>Print Design</h3>
+          <p>Professional print materials including business cards, brochures, and marketing collateral.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          </div>
+          <h3>Digital Graphics</h3>
+          <p>Social media graphics, web banners, and digital marketing materials.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section id="process" class="process-section">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Nuestro Proceso de Diseño</h2>
+        <p class="section-subtitle">Metodología creativa para resultados de diseño excepcionales</p>
+      </div>
+      
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <h3>Discovery</h3>
+          <p>We research your brand, target audience, and competitors to understand your unique needs.</p>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <h3>Concept</h3>
+          <p>We develop initial concepts and mood boards to establish the visual direction.</p>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <h3>Design</h3>
+          <p>We create detailed designs and iterate based on your feedback and requirements.</p>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <h3>Delivery</h3>
+          <p>We finalize designs and provide all necessary files and brand guidelines.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="section-container">
+      <div class="contact-content">
+        <div class="contact-info">
+          <div class="section-header">
+            <h2 class="section-title">¿Listo para Elevar tu Marca?</h2>
+            <p class="section-subtitle">Creemos algo hermoso juntos</p>
+          </div>
+          
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </div>
+              <div class="contact-text">
+                <h3>Correo</h3>
+                <a href="mailto:zensolutions.designs@gmail.com">zensolutions.designs@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="contact-visual">
+          <div class="contact-image-container">
+            <div class="placeholder-content">
+              <div class="placeholder-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 40px; height: 40px;">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                  <path d="M2 17l10 5 10-5"/>
+                  <path d="M2 12l10 5 10-5"/>
+                </svg>
+              </div>
+              <h3>Galería de Diseño Próximamente</h3>
+              <p>Estamos preparando un showcase visual de nuestro trabajo de diseño y proceso creativo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="../images/ZenMiniLogo-cutout.png" alt="Zen Solutions">
+      </div>
+      <p class="footer-text">© 2025 Zen Solutions. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="../script-new.js"></script>
+</body>
+</html>
