@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles-new.css">
+  <link rel="stylesheet" href="freemium-styles.css">
   <style>
     body { min-height: 100vh; margin: 0; }
     .tools-hero { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:6rem 1rem 2rem 1rem; background: linear-gradient(135deg, rgba(167,139,250,0.10) 0%, rgba(212,255,101,0.10) 100%); border-radius:0 0 2rem 2rem; box-shadow: var(--shadow-md); text-align:center; }
@@ -59,6 +60,9 @@
   </header>
 
   <section class="merge section-container">
+    <!-- Indicador de uso freemium -->
+    <div id="usageIndicator"></div>
+    
     <h2 data-en="Add your PDFs and set the order" data-es="Agrega tus PDFs y define el orden">Agrega tus PDFs y define el orden</h2>
     <div class="controls">
       <label for="fileInput" class="btn" data-en="Select PDFs" data-es="Seleccionar PDFs">Seleccionar PDFs</label>
@@ -75,6 +79,7 @@
   </section>
 
   <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+  <script src="freemium-system.js"></script>
   <script>
     // Navbar mobile toggle
     (function init(){
@@ -110,8 +115,28 @@
     let files = []; // array of File
 
     function addFiles(newFiles) {
-      for (const f of newFiles) {
-        if (f.type === 'application/pdf') files.push(f);
+      const pdfFiles = Array.from(newFiles).filter(f => f.type === 'application/pdf');
+      
+      // Verificar límites freemium
+      const canUse = freemiumSystem.canUseTool('mergePdf', pdfFiles.length);
+      
+      if (!canUse.allowed) {
+        freemiumSystem.showUpgradeModal('mergePdf', canUse.reason);
+        return;
+      }
+      
+      // Aplicar límite según el plan
+      const stats = freemiumSystem.getUsageStats('mergePdf');
+      const maxPdfs = stats.isPremium ? 10 : 3;
+      
+      let filesToAdd = pdfFiles;
+      if (pdfFiles.length > maxPdfs) {
+        alert(`Máximo ${maxPdfs} PDFs por unión. Solo se agregarán los primeros ${maxPdfs}.`);
+        filesToAdd = pdfFiles.slice(0, maxPdfs);
+      }
+      
+      for (const f of filesToAdd) {
+        files.push(f);
       }
       renderList();
     }
@@ -154,6 +179,13 @@
 
     mergeBtn.addEventListener('click', async () => {
       if (files.length < 2) return;
+      
+      // Registrar uso en el sistema freemium
+      freemiumSystem.recordUsage('mergePdf');
+      
+      // Actualizar indicador de uso
+      updateUsageIndicator();
+      
       result.textContent = 'Uniendo PDFs…';
       try {
         const PDFNS = window.PDFLib || window.pdfLib || window['pdf-lib'];
@@ -179,6 +211,20 @@
         console.error(err);
         result.textContent = 'Ocurrió un error al unir los PDFs: ' + (err && err.message ? err.message : 'desconocido');
       }
+    });
+
+    // Función para actualizar el indicador de uso
+    function updateUsageIndicator() {
+      const indicator = document.getElementById('usageIndicator');
+      if (indicator) {
+        indicator.innerHTML = freemiumSystem.showUsageIndicator('mergePdf');
+      }
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      setLanguage(detectLanguage());
+      updateUsageIndicator();
     });
   </script>
 </body>

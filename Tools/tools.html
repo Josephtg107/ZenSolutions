@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles-new.css">
+  <link rel="stylesheet" href="freemium-styles.css">
   <style>
     body { min-height: 100vh; margin: 0; }
     .tools-hero {
@@ -31,6 +32,56 @@
     .tool-btn { display: inline-block; padding: .6rem 1.1rem; background: var(--dark-blue); color: var(--white); border-radius: 999px; text-decoration: none; font-weight: 600; }
     .tool-btn:hover { filter: brightness(1.05); }
 
+    /* Estilos para información freemium */
+    .freemium-info {
+      margin-top: 2rem;
+      text-align: center;
+      max-width: 600px;
+    }
+    
+    .freemium-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, rgba(167,139,250,0.15), rgba(212,255,101,0.15));
+      border: 1px solid rgba(167,139,250,0.3);
+      border-radius: 20px;
+      padding: 8px 16px;
+      margin-bottom: 12px;
+    }
+    
+    .badge-icon {
+      font-size: 1.2rem;
+    }
+    
+    .badge-text {
+      font-weight: 600;
+      color: var(--dark-blue);
+      font-size: 0.9rem;
+    }
+    
+    .freemium-description {
+      color: var(--gray-600);
+      font-size: 0.95rem;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* Estilo para enlace premium en navegación */
+    .nav-premium {
+      background: linear-gradient(135deg, rgba(167,139,250,0.1), rgba(212,255,101,0.1));
+      border-radius: 20px;
+      padding: 6px 12px !important;
+      font-weight: 600;
+      color: var(--primary-purple) !important;
+      border: 1px solid rgba(167,139,250,0.2);
+    }
+
+    .nav-premium:hover {
+      background: linear-gradient(135deg, rgba(167,139,250,0.2), rgba(212,255,101,0.2));
+      transform: translateY(-1px);
+    }
+
     @media (max-width: 600px) { .tools-hero h1 { font-size: 1.6rem; } }
   </style>
 </head>
@@ -48,6 +99,7 @@
         <a href="../index-new.html#services" class="nav-link" data-en="Services" data-es="Servicios">Servicios</a>
         <a href="../index-new.html#work" class="nav-link" data-en="Work" data-es="Trabajo">Trabajo</a>
         <a href="/Tools/tools.html" class="nav-link" data-en="Tools" data-es="Herramientas">Herramientas</a>
+        <a href="subscription.html" class="nav-link nav-premium" data-en="Premium" data-es="Premium">Premium</a>
         <a href="../index-new.html#contact" class="nav-link" data-en="Contact" data-es="Contacto">Contacto</a>
       </div>
       <div class="nav-toggle" id="navToggle">
@@ -59,6 +111,17 @@
   <header class="tools-hero">
     <h1 data-en="Zen Online Tools" data-es="Herramientas en Línea de Zen">Herramientas en Línea de Zen</h1>
     <p data-en="Free and private tools that run right in your browser. No uploads, no tracking — just results." data-es="Herramientas gratuitas y privadas que corren en tu navegador. Sin subidas, sin rastreo — solo resultados.">Herramientas gratuitas y privadas que corren en tu navegador. Sin subidas, sin rastreo — solo resultados.</p>
+    
+    <!-- Información freemium -->
+    <div class="freemium-info">
+      <div class="freemium-badge">
+        <span class="badge-icon">🚀</span>
+        <span class="badge-text">Herramientas Gratuitas</span>
+      </div>
+      <p class="freemium-description">
+        Usa nuestras herramientas gratis con límites generosos. <a href="subscription.html" style="color: var(--primary-purple); text-decoration: none; font-weight: 600;">Descubre más opciones</a>.
+      </p>
+    </div>
   </header>
 
   <main class="section-container">
@@ -152,6 +215,42 @@
         </div>
       </article>
 
+      <!-- HEIC to JPG -->
+      <article class="tool-card">
+        <div class="tool-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        </div>
+        <h3 class="tool-title" data-en="HEIC to JPG" data-es="HEIC a JPG">HEIC a JPG</h3>
+        <p class="tool-desc" data-en="Convert HEIC images from iPhone/Apple devices to JPG format." data-es="Convierte imágenes HEIC de iPhone/Apple a formato JPG.">Convierte imágenes HEIC de iPhone/Apple a formato JPG.</p>
+        <div class="tool-actions">
+          <a class="tool-btn" href="image-converter.html?from=heic&to=jpg" data-en="Open" data-es="Abrir">Abrir</a>
+        </div>
+      </article>
+
+      <!-- HEIC to PNG -->
+      <article class="tool-card">
+        <div class="tool-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        </div>
+        <h3 class="tool-title" data-en="HEIC to PNG" data-es="HEIC a PNG">HEIC a PNG</h3>
+        <p class="tool-desc" data-en="Convert HEIC images from iPhone/Apple devices to PNG format." data-es="Convierte imágenes HEIC de iPhone/Apple a formato PNG.">Convierte imágenes HEIC de iPhone/Apple a formato PNG.</p>
+        <div class="tool-actions">
+          <a class="tool-btn" href="image-converter.html?from=heic&to=png" data-en="Open" data-es="Abrir">Abrir</a>
+        </div>
+      </article>
+
+      <!-- HEIC to WebP -->
+      <article class="tool-card">
+        <div class="tool-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        </div>
+        <h3 class="tool-title" data-en="HEIC to WebP" data-es="HEIC a WebP">HEIC a WebP</h3>
+        <p class="tool-desc" data-en="Convert HEIC images from iPhone/Apple devices to WebP format." data-es="Convierte imágenes HEIC de iPhone/Apple a formato WebP.">Convierte imágenes HEIC de iPhone/Apple a formato WebP.</p>
+        <div class="tool-actions">
+          <a class="tool-btn" href="image-converter.html?from=heic&to=webp" data-en="Open" data-es="Abrir">Abrir</a>
+        </div>
+      </article>
+
       <!-- Image to PDF -->
       <article class="tool-card">
         <div class="tool-icon" aria-hidden="true">
@@ -173,13 +272,13 @@
         <div class="tool-actions"><a class="tool-btn" href="merge-pdf.html" data-en="Open" data-es="Abrir">Abrir</a></div>
       </article>
 
-      <article class="tool-card" aria-disabled="true">
+      <article class="tool-card premium-only" aria-disabled="true">
         <div class="tool-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M6 4h12v4H6zM6 10h12v4H6zM6 16h12v4H6z"/></svg>
         </div>
         <h3 class="tool-title" data-en="Split PDF" data-es="Dividir PDF">Dividir PDF</h3>
-        <p class="tool-desc" data-en="Extract page ranges from PDFs. Coming soon." data-es="Extrae rangos de páginas de un PDF. Próximamente.">Extrae rangos de páginas de un PDF. Próximamente.</p>
-        <div class="tool-actions"><a class="tool-btn" href="#" onclick="return false;" style="background:var(--gray-400);" data-en="Soon" data-es="Pronto">Pronto</a></div>
+        <p class="tool-desc" data-en="Extract page ranges from PDFs. Premium feature coming soon." data-es="Extrae rangos de páginas de un PDF. Característica premium próximamente.">Extrae rangos de páginas de un PDF. Característica premium próximamente.</p>
+        <div class="tool-actions"><a class="tool-btn" href="#" onclick="return false;" style="background:var(--gray-400);" data-en="Premium Soon" data-es="Premium Pronto">Premium Pronto</a></div>
       </article>
     </div>
   </main>
@@ -189,6 +288,7 @@
     <a href="../index-new.html" style="color:var(--primary-purple);text-decoration:none;" data-en="Back to Home" data-es="Volver al Inicio">Volver al Inicio</a>
   </div>
 
+  <script src="freemium-system.js"></script>
   <script>
     // Mobile navbar
     (function initToolsNavbar(){
@@ -220,7 +320,54 @@
         if (text) el.textContent = text;
       });
     }
-    document.addEventListener('DOMContentLoaded', () => setLanguage(detectLanguage()));
+    // Función para mostrar información de límites en las tarjetas
+    function updateToolCards() {
+      const cards = document.querySelectorAll('.tool-card:not(.premium-only)');
+      cards.forEach(card => {
+        const toolName = card.querySelector('.tool-title').textContent.toLowerCase();
+        let toolKey = '';
+        
+        if (toolName.includes('convertidor') || toolName.includes('converter')) {
+          toolKey = 'imageConverter';
+        } else if (toolName.includes('pdf') && toolName.includes('imagen')) {
+          toolKey = 'imageToPdf';
+        } else if (toolName.includes('unir') || toolName.includes('merge')) {
+          toolKey = 'mergePdf';
+        }
+        
+        if (toolKey) {
+          const stats = freemiumSystem.getUsageStats(toolKey);
+          const usageDiv = document.createElement('div');
+          usageDiv.className = 'tool-usage-info';
+          usageDiv.innerHTML = freemiumSystem.showUsageIndicator(toolKey);
+          
+          // Agregar enlace sutil a suscripción si no es premium
+          if (!stats.isPremium) {
+            const upgradeLink = document.createElement('div');
+            upgradeLink.style.cssText = `
+              margin-top: 8px; text-align: center;
+            `;
+            upgradeLink.innerHTML = `
+              <a href="subscription.html" style="
+                color: var(--primary-purple); 
+                text-decoration: none; 
+                font-size: 0.8rem; 
+                font-weight: 500;
+                opacity: 0.8;
+              ">¿Necesitas más? Ver opciones premium</a>
+            `;
+            usageDiv.appendChild(upgradeLink);
+          }
+          
+          card.querySelector('.tool-actions').appendChild(usageDiv);
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      setLanguage(detectLanguage());
+      updateToolCards();
+    });
   </script>
 </body>
 </html>

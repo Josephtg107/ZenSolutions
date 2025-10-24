@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zen Premium - Suscripción</title>
+  <link rel="icon" href="../Icon/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles-new.css">
+  <link rel="stylesheet" href="freemium-styles.css">
+  <style>
+    body { min-height: 100vh; margin: 0; }
+    
+    .subscription-hero {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 6rem 1rem 3rem 1rem;
+      background: linear-gradient(135deg, rgba(167,139,250,0.15) 0%, rgba(212,255,101,0.15) 100%);
+      border-radius: 0 0 2rem 2rem; box-shadow: var(--shadow-md);
+      text-align: center;
+    }
+    
+    .subscription-hero h1 { 
+      font-size: 2.5rem; font-weight: 800; color: var(--dark-blue); 
+      margin: 0 0 .5rem 0; letter-spacing: -0.5px; 
+    }
+    
+    .subscription-hero p { 
+      color: var(--gray-700); font-size: 1.2rem; max-width: 600px; 
+      margin-bottom: 2rem;
+    }
+    
+    .subscription-container {
+      max-width: 1000px; margin: 2rem auto; padding: 0 1rem;
+    }
+    
+    .pricing-section {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem;
+    }
+    
+    .plan-card {
+      background: var(--white); border: 2px solid var(--gray-200); 
+      border-radius: var(--radius-2xl); padding: 2rem; text-align: center;
+      transition: all var(--transition-normal); position: relative;
+    }
+    
+    .plan-card.free {
+      border-color: var(--gray-300);
+    }
+    
+    .plan-card.premium {
+      border-color: var(--primary-purple);
+      background: linear-gradient(135deg, rgba(167,139,250,0.05), rgba(212,255,101,0.05));
+      transform: scale(1.05);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .plan-card.premium::before {
+      content: "⭐ Más Popular";
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--primary-purple), var(--primary-green));
+      color: var(--white); padding: 6px 16px; border-radius: 20px;
+      font-size: 0.8rem; font-weight: 600;
+    }
+    
+    .plan-title {
+      font-size: 1.5rem; font-weight: 700; color: var(--dark-blue);
+      margin-bottom: 0.5rem;
+    }
+    
+    .plan-price {
+      font-size: 3rem; font-weight: 800; color: var(--primary-purple);
+      margin: 1rem 0;
+    }
+    
+    .plan-price.free {
+      color: var(--gray-600);
+      font-size: 2rem;
+    }
+    
+    .plan-period {
+      color: var(--gray-500); font-size: 1rem; margin-bottom: 1.5rem;
+    }
+    
+    .plan-features {
+      list-style: none; padding: 0; margin: 1.5rem 0;
+    }
+    
+    .plan-features li {
+      padding: 0.5rem 0; color: var(--gray-700);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    
+    .plan-features li::before {
+      content: "✓"; color: var(--primary-green); font-weight: bold;
+    }
+    
+    .plan-features li.premium-only::before {
+      content: "⭐"; color: var(--primary-purple);
+    }
+    
+    .plan-features li.unavailable::before {
+      content: "✗"; color: var(--gray-400);
+    }
+    
+    .subscribe-btn {
+      background: linear-gradient(135deg, var(--primary-purple), var(--primary-green));
+      color: var(--white); border: none; padding: 1rem 2rem;
+      border-radius: var(--radius-lg); font-weight: 600; font-size: 1.1rem;
+      cursor: pointer; transition: transform var(--transition-normal);
+      width: 100%; margin-top: 1rem;
+    }
+    
+    .subscribe-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .current-plan-btn {
+      background: var(--gray-200); color: var(--gray-600);
+      border: none; padding: 1rem 2rem; border-radius: var(--radius-lg);
+      font-weight: 600; font-size: 1.1rem; cursor: not-allowed;
+      width: 100%; margin-top: 1rem;
+    }
+    
+    .features-section {
+      background: var(--white); border-radius: var(--radius-2xl);
+      padding: 2rem; margin-bottom: 2rem; box-shadow: var(--shadow);
+    }
+    
+    .features-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem; margin-top: 1.5rem;
+    }
+    
+    .feature-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+    }
+    
+    .feature-icon {
+      width: 40px; height: 40px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary-purple), var(--primary-green));
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white); font-size: 1.2rem; flex-shrink: 0;
+    }
+    
+    .feature-content h4 {
+      margin: 0 0 0.5rem 0; color: var(--dark-blue); font-size: 1.1rem;
+    }
+    
+    .feature-content p {
+      margin: 0; color: var(--gray-600); font-size: 0.9rem;
+    }
+    
+    .faq-section {
+      background: var(--white); border-radius: var(--radius-2xl);
+      padding: 2rem; margin-bottom: 2rem; box-shadow: var(--shadow);
+    }
+    
+    .faq-item {
+      border-bottom: 1px solid var(--gray-200); padding: 1rem 0;
+    }
+    
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+    
+    .faq-question {
+      font-weight: 600; color: var(--dark-blue); margin-bottom: 0.5rem;
+    }
+    
+    .faq-answer {
+      color: var(--gray-600); font-size: 0.95rem;
+    }
+    
+    @media (max-width: 768px) {
+      .subscription-hero h1 { font-size: 2rem; }
+      .subscription-hero p { font-size: 1rem; }
+      .pricing-section { grid-template-columns: 1fr; gap: 1rem; }
+      .plan-card.premium { transform: none; }
+      .plan-price { font-size: 2.5rem; }
+      .plan-price.free { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <a href="../index-new.html#hero">
+          <img src="../images/ZenMiniLogo-cutout.png" alt="Zen Solutions">
+        </a>
+      </div>
+      <div class="nav-menu" id="navMenu">
+        <a href="../index-new.html#about" class="nav-link" data-en="About" data-es="Nosotros">Nosotros</a>
+        <a href="../index-new.html#services" class="nav-link" data-en="Services" data-es="Servicios">Servicios</a>
+        <a href="../index-new.html#work" class="nav-link" data-en="Work" data-es="Trabajo">Trabajo</a>
+        <a href="/Tools/tools.html" class="nav-link" data-en="Tools" data-es="Herramientas">Herramientas</a>
+        <a href="../index-new.html#contact" class="nav-link" data-en="Contact" data-es="Contacto">Contacto</a>
+      </div>
+      <div class="nav-toggle" id="navToggle">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <header class="subscription-hero">
+    <h1 data-en="Zen Premium" data-es="Zen Premium">Zen Premium</h1>
+    <p data-en="Unlock the full potential of our tools with unlimited access and premium features." data-es="Desbloquea el potencial completo de nuestras herramientas con acceso ilimitado y características premium.">Desbloquea el potencial completo de nuestras herramientas con acceso ilimitado y características premium.</p>
+  </header>
+
+  <main class="subscription-container">
+    <!-- Planes de Suscripción -->
+    <section class="pricing-section">
+      <!-- Plan Gratuito -->
+      <div class="plan-card free">
+        <h3 class="plan-title" data-en="Free Plan" data-es="Plan Gratuito">Plan Gratuito</h3>
+        <div class="plan-price free" data-en="Free" data-es="Gratis">Gratis</div>
+        <div class="plan-period" data-en="Forever" data-es="Para siempre">Para siempre</div>
+        
+        <ul class="plan-features">
+          <li data-en="5 image conversions per day" data-es="5 conversiones de imagen por día">5 conversiones de imagen por día</li>
+          <li data-en="3 images per conversion" data-es="3 imágenes por conversión">3 imágenes por conversión</li>
+          <li data-en="3 PDF conversions per day" data-es="3 conversiones PDF por día">3 conversiones PDF por día</li>
+          <li data-en="5 images per PDF" data-es="5 imágenes por PDF">5 imágenes por PDF</li>
+          <li data-en="2 PDF merges per day" data-es="2 uniones PDF por día">2 uniones PDF por día</li>
+          <li data-en="3 PDFs per merge" data-es="3 PDFs por unión">3 PDFs por unión</li>
+          <li data-en="Basic support" data-es="Soporte básico">Soporte básico</li>
+        </ul>
+        
+        <button class="current-plan-btn" id="currentPlanBtn" data-en="Current Plan" data-es="Plan Actual">Plan Actual</button>
+      </div>
+
+      <!-- Plan Premium -->
+      <div class="plan-card premium">
+        <h3 class="plan-title" data-en="Premium Plan" data-es="Plan Premium">Plan Premium</h3>
+        <div class="plan-price">$49</div>
+        <div class="plan-period" data-en="per month" data-es="por mes">por mes</div>
+        
+        <ul class="plan-features">
+          <li class="premium-only" data-en="Unlimited conversions" data-es="Conversiones ilimitadas">Conversiones ilimitadas</li>
+          <li class="premium-only" data-en="Up to 20 images per conversion" data-es="Hasta 20 imágenes por conversión">Hasta 20 imágenes por conversión</li>
+          <li class="premium-only" data-en="Up to 50 images per PDF" data-es="Hasta 50 imágenes por PDF">Hasta 50 imágenes por PDF</li>
+          <li class="premium-only" data-en="Up to 10 PDFs per merge" data-es="Hasta 10 PDFs por unión">Hasta 10 PDFs por unión</li>
+          <li class="premium-only" data-en="Access to future tools" data-es="Acceso a herramientas futuras">Acceso a herramientas futuras</li>
+          <li class="premium-only" data-en="Priority support" data-es="Soporte prioritario">Soporte prioritario</li>
+          <li class="premium-only" data-en="No ads or limitations" data-es="Sin anuncios ni limitaciones">Sin anuncios ni limitaciones</li>
+        </ul>
+        
+        <button class="subscribe-btn" id="subscribeBtn" data-en="Subscribe Now" data-es="Suscribirse Ahora">Suscribirse Ahora</button>
+      </div>
+    </section>
+
+    <!-- Características Premium -->
+    <section class="features-section">
+      <h2 data-en="Why Choose Premium?" data-es="¿Por qué elegir Premium?">¿Por qué elegir Premium?</h2>
+      <p data-en="Get the most out of our tools with premium features designed for power users." data-es="Aprovecha al máximo nuestras herramientas con características premium diseñadas para usuarios avanzados.">Aprovecha al máximo nuestras herramientas con características premium diseñadas para usuarios avanzados.</p>
+      
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">🚀</div>
+          <div class="feature-content">
+            <h4 data-en="Unlimited Usage" data-es="Uso Ilimitado">Uso Ilimitado</h4>
+            <p data-en="Convert, merge, and process files without daily limits." data-es="Convierte, une y procesa archivos sin límites diarios.">Convierte, une y procesa archivos sin límites diarios.</p>
+          </div>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">⚡</div>
+          <div class="feature-content">
+            <h4 data-en="Higher Limits" data-es="Límites Mayores">Límites Mayores</h4>
+            <p data-en="Process more files at once with increased batch limits." data-es="Procesa más archivos a la vez con límites de lote aumentados.">Procesa más archivos a la vez con límites de lote aumentados.</p>
+          </div>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">🆕</div>
+          <div class="feature-content">
+            <h4 data-en="Early Access" data-es="Acceso Temprano">Acceso Temprano</h4>
+            <p data-en="Be the first to try new tools and features." data-es="Sé el primero en probar nuevas herramientas y características.">Sé el primero en probar nuevas herramientas y características.</p>
+          </div>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">🎯</div>
+          <div class="feature-content">
+            <h4 data-en="Priority Support" data-es="Soporte Prioritario">Soporte Prioritario</h4>
+            <p data-en="Get help faster with dedicated premium support." data-es="Obtén ayuda más rápido con soporte premium dedicado.">Obtén ayuda más rápido con soporte premium dedicado.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <h2 data-en="Frequently Asked Questions" data-es="Preguntas Frecuentes">Preguntas Frecuentes</h2>
+      
+      <div class="faq-item">
+        <div class="faq-question" data-en="Can I cancel anytime?" data-es="¿Puedo cancelar en cualquier momento?">¿Puedo cancelar en cualquier momento?</div>
+        <div class="faq-answer" data-en="Yes, you can cancel your subscription at any time. You'll continue to have premium access until the end of your billing period." data-es="Sí, puedes cancelar tu suscripción en cualquier momento. Continuarás teniendo acceso premium hasta el final de tu período de facturación.">Sí, puedes cancelar tu suscripción en cualquier momento. Continuarás teniendo acceso premium hasta el final de tu período de facturación.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question" data-en="What payment methods do you accept?" data-es="¿Qué métodos de pago aceptan?">¿Qué métodos de pago aceptan?</div>
+        <div class="faq-answer" data-en="We accept all major credit cards, PayPal, and other secure payment methods." data-es="Aceptamos todas las tarjetas de crédito principales, PayPal y otros métodos de pago seguros.">Aceptamos todas las tarjetas de crédito principales, PayPal y otros métodos de pago seguros.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question" data-en="Is my data secure?" data-es="¿Mis datos están seguros?">¿Mis datos están seguros?</div>
+        <div class="faq-answer" data-en="Absolutely. All processing happens in your browser. We don't store or upload your files anywhere." data-es="Absolutamente. Todo el procesamiento ocurre en tu navegador. No almacenamos ni subimos tus archivos a ningún lugar.">Absolutamente. Todo el procesamiento ocurre en tu navegador. No almacenamos ni subimos tus archivos a ningún lugar.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question" data-en="Do you offer refunds?" data-es="¿Ofrecen reembolsos?">¿Ofrecen reembolsos?</div>
+        <div class="faq-answer" data-en="Yes, we offer a 30-day money-back guarantee if you're not satisfied with your premium subscription." data-es="Sí, ofrecemos una garantía de devolución de dinero de 30 días si no estás satisfecho con tu suscripción premium.">Sí, ofrecemos una garantía de devolución de dinero de 30 días si no estás satisfecho con tu suscripción premium.</div>
+      </div>
+    </section>
+
+    <!-- Volver a Herramientas -->
+    <div style="text-align: center; margin: 2rem 0;">
+      <a href="tools.html" style="color: var(--primary-purple); text-decoration: none; font-weight: 600; font-size: 1.1rem;" data-en="← Back to Tools" data-es="← Volver a Herramientas">← Volver a Herramientas</a>
+    </div>
+  </main>
+
+  <div class="tools-footer">
+    &copy; 2025 Zen Solutions. <span data-en="Powered by browser technology." data-es="Desarrollado con tecnología Zen Solutions.">Desarrollado con tecnología Zen Solutions.</span>
+    <a href="../index-new.html" style="color:var(--primary-purple);text-decoration:none;" data-en="Back to Home" data-es="Volver al Inicio">Volver al Inicio</a>
+  </div>
+
+  <script src="freemium-system.js"></script>
+  <script>
+    // Mobile navbar
+    (function initSubscriptionNavbar(){
+      const navToggle = document.getElementById('navToggle');
+      const navMenu = document.getElementById('navMenu');
+      if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+          navMenu.classList.toggle('active');
+          navToggle.classList.toggle('active');
+          document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        });
+        navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+          navMenu.classList.remove('active');
+          navToggle.classList.remove('active');
+          document.body.style.overflow = '';
+        }));
+      }
+    })();
+
+    // Language handling
+    function detectLanguage() {
+      const userLang = navigator.language || navigator.userLanguage || '';
+      return userLang.toLowerCase().startsWith('es') ? 'es' : 'en';
+    }
+    
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-en]').forEach(el => {
+        const text = el.getAttribute(`data-${lang}`);
+        if (text) el.textContent = text;
+      });
+    }
+
+    // Update UI based on premium status
+    function updateSubscriptionUI() {
+      const isPremium = freemiumSystem.isPremium();
+      const subscribeBtn = document.getElementById('subscribeBtn');
+      const currentPlanBtn = document.getElementById('currentPlanBtn');
+      
+      if (isPremium) {
+        subscribeBtn.textContent = 'Premium Activo';
+        subscribeBtn.style.background = 'var(--gray-200)';
+        subscribeBtn.style.color = 'var(--gray-600)';
+        subscribeBtn.style.cursor = 'not-allowed';
+        subscribeBtn.onclick = null;
+        
+        currentPlanBtn.textContent = 'Plan Premium';
+        currentPlanBtn.style.background = 'linear-gradient(135deg, var(--primary-purple), var(--primary-green))';
+        currentPlanBtn.style.color = 'var(--white)';
+        currentPlanBtn.style.cursor = 'default';
+      } else {
+        subscribeBtn.onclick = () => freemiumSystem.purchasePremium();
+      }
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      setLanguage(detectLanguage());
+      updateSubscriptionUI();
+    });
+  </script>
+</body>
+</html>
