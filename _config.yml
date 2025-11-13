@@ -1,0 +1,25 @@
+# Jekyll Configuration for Zen Solutions
+
+# Exclude directories and files from processing
+exclude:
+  - Tools/node_modules
+  - node_modules
+  - package.json
+  - package-lock.json
+  - .git
+  - .gitignore
+  - .jekyll-cache
+  - .jekyll-metadata
+  - .sass-cache
+  - vendor
+  - Gemfile
+  - Gemfile.lock
+
+# Site settings
+title: Zen Solutions
+description: Soluciones digitales creativas
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
