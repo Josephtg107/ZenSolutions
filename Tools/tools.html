@@ -308,10 +308,9 @@
       }
     })();
 
-    // Language handling
+    // Language handling - siempre usar español
     function detectLanguage() {
-      const userLang = navigator.language || navigator.userLanguage || '';
-      return userLang.toLowerCase().startsWith('es') ? 'es' : 'en';
+      return 'es'; // Siempre español
     }
     function setLanguage(lang) {
       document.documentElement.lang = lang;
@@ -320,10 +319,16 @@
         if (text) el.textContent = text;
       });
     }
-    // Función para mostrar información de límites en las tarjetas
+    // Función para mostrar información de límites solo cuando se alcanza el límite
     function updateToolCards() {
       const cards = document.querySelectorAll('.tool-card:not(.premium-only)');
       cards.forEach(card => {
+        // Eliminar cualquier mensaje de límite existente para evitar duplicados
+        const existingMessage = card.querySelector('.tool-limit-message');
+        if (existingMessage) {
+          existingMessage.remove();
+        }
+        
         const toolName = card.querySelector('.tool-title').textContent.toLowerCase();
         let toolKey = '';
         
@@ -337,29 +342,35 @@
         
         if (toolKey) {
           const stats = freemiumSystem.getUsageStats(toolKey);
-          const usageDiv = document.createElement('div');
-          usageDiv.className = 'tool-usage-info';
-          usageDiv.innerHTML = freemiumSystem.showUsageIndicator(toolKey);
           
-          // Agregar enlace sutil a suscripción si no es premium
-          if (!stats.isPremium) {
-            const upgradeLink = document.createElement('div');
-            upgradeLink.style.cssText = `
-              margin-top: 8px; text-align: center;
+          // Solo mostrar información si el límite está alcanzado y no es premium
+          if (!stats.isPremium && stats.daily >= stats.dailyLimit) {
+            const limitMessage = document.createElement('div');
+            limitMessage.className = 'tool-limit-message';
+            limitMessage.innerHTML = `
+              <p style="
+                margin: 0;
+                padding: 12px;
+                background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), rgba(239, 68, 68, 0.05));
+                border: 1px solid rgba(239, 68, 68, 0.2);
+                border-radius: 8px;
+                color: #991b1b;
+                font-size: 0.875rem;
+                text-align: center;
+                line-height: 1.5;
+              ">
+                Has alcanzado el límite diario de conversiones. 
+                <a href="subscription.html" style="
+                  color: var(--primary-purple); 
+                  text-decoration: none; 
+                  font-weight: 600;
+                  margin-left: 4px;
+                ">Descubre más opciones</a>
+              </p>
             `;
-            upgradeLink.innerHTML = `
-              <a href="subscription.html" style="
-                color: var(--primary-purple); 
-                text-decoration: none; 
-                font-size: 0.8rem; 
-                font-weight: 500;
-                opacity: 0.8;
-              ">¿Necesitas más? Ver opciones premium</a>
-            `;
-            usageDiv.appendChild(upgradeLink);
+            
+            card.querySelector('.tool-actions').appendChild(limitMessage);
           }
-          
-          card.querySelector('.tool-actions').appendChild(usageDiv);
         }
       });
     }

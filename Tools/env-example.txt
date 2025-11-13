@@ -1,0 +1,30 @@
+# Configuración de Stripe para Zen Solutions
+# Archivo: .env
+
+# Claves de Stripe (reemplazar con tus claves reales)
+STRIPE_PUBLISHABLE_KEY=pk_test_TU_CLAVE_PUBLICA_AQUI
+STRIPE_SECRET_KEY=sk_test_TU_CLAVE_SECRETA_AQUI
+STRIPE_WEBHOOK_SECRET=whsec_TU_WEBHOOK_SECRET_AQUI
+
+# IDs del producto y precio (obtener de Stripe Dashboard)
+STRIPE_PRODUCT_ID=prod_TU_PRODUCT_ID_AQUI
+STRIPE_PRICE_ID=price_TU_PRICE_ID_AQUI
+
+# Configuración del servidor
+PORT=6970
+NODE_ENV=development
+
+# URL base de tu aplicación
+BASE_URL=http://localhost:6970
+
+# Configuración de la suscripción
+SUBSCRIPTION_PRICE=5000
+SUBSCRIPTION_CURRENCY=mxn
+SUBSCRIPTION_INTERVAL=month
+
+# Para producción, cambiar a:
+# NODE_ENV=production
+# BASE_URL=https://tu-dominio.com
+# STRIPE_PUBLISHABLE_KEY=pk_live_...
+# STRIPE_SECRET_KEY=sk_live_...
+# STRIPE_WEBHOOK_SECRET=whsec_live_...

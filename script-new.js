@@ -9,15 +9,30 @@ const navMenu = document.getElementById('navMenu');
 const navToggle = document.getElementById('navToggle');
 
 // ===== LOADING SCREEN =====
-window.addEventListener('load', () => {
-  // Simulate loading time
-  setTimeout(() => {
-    loadingScreen.classList.add('hidden');
+// Verificar si la loading screen ya se mostró antes
+const hasSeenLoadingScreen = localStorage.getItem('zenSolutions_loadingShown');
+
+if (hasSeenLoadingScreen) {
+  // Si ya se mostró antes, ocultarla inmediatamente
+  if (loadingScreen) {
+    loadingScreen.style.display = 'none';
+  }
+} else {
+  // Si es la primera vez, mostrar la loading screen
+  window.addEventListener('load', () => {
+    // Simulate loading time
     setTimeout(() => {
-      loadingScreen.style.display = 'none';
-    }, 500);
-  }, 2000);
-});
+      if (loadingScreen) {
+        loadingScreen.classList.add('hidden');
+        setTimeout(() => {
+          loadingScreen.style.display = 'none';
+          // Guardar en localStorage que ya se mostró
+          localStorage.setItem('zenSolutions_loadingShown', 'true');
+        }, 500);
+      }
+    }, 2000);
+  });
+}
 
 // ===== NAVIGATION =====
 // Mobile menu toggle
