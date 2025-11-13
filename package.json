@@ -1,0 +1,13 @@
+{
+  "name": "zen-solutions",
+  "version": "1.0.0",
+  "description": "Zen Solutions - Soluciones Digitales Innovadoras",
+  "scripts": {
+    "dev": "cd Tools && npm run dev",
+    "start": "cd Tools && npm start",
+    "install-tools": "cd Tools && npm install"
+  },
+  "author": "Zen Solutions",
+  "license": "MIT"
+}
+

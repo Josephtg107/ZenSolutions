@@ -11,7 +11,11 @@
   <link rel="stylesheet" href="../styles-new.css">
   <link rel="stylesheet" href="freemium-styles.css">
   <style>
-    body { min-height: 100vh; margin: 0; }
+    body { 
+      min-height: 100vh; 
+      margin: 0; 
+      cursor: auto !important; 
+    }
     .converter-hero {
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       padding: 6rem 1rem 2.5rem 1rem;
@@ -41,9 +45,31 @@
     }
     .format-select {
       padding: var(--space-3); border: 2px solid var(--gray-200); border-radius: var(--radius-lg);
-      font-size: 1rem; background: var(--white); transition: border-color var(--transition-normal);
+      font-size: 1.1rem; background: var(--white); transition: all var(--transition-normal);
+      font-weight: 700; color: var(--dark-blue); cursor: pointer;
+      appearance: none; -webkit-appearance: none; -moz-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 12 12'%3E%3Cpath fill='%231f2937' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right var(--space-3) center;
+      padding-right: calc(var(--space-3) + 24px);
+      min-height: 48px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     }
-    .format-select:focus { outline: none; border-color: var(--primary-purple); }
+    .format-select:focus { 
+      outline: none; 
+      border-color: var(--primary-purple); 
+      box-shadow: 0 0 0 3px rgba(167,139,250,0.15), 0 2px 4px rgba(0,0,0,0.1); 
+      transform: translateY(-1px);
+    }
+    .format-select:hover { 
+      border-color: var(--primary-purple); 
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .format-select option {
+      font-weight: 600;
+      padding: var(--space-2);
+      background: var(--white);
+    }
     .arrow-icon {
       font-size: 1.5rem; color: var(--primary-purple); font-weight: bold;
     }
@@ -195,8 +221,8 @@
   <main class="converter-container">
     <a href="tools.html" class="back-btn" data-en="← Back to Tools" data-es="← Volver a Herramientas">← Volver a Herramientas</a>
     
-    <!-- Indicador de uso freemium -->
-    <div id="usageIndicator"></div>
+    <!-- Indicador de uso freemium - solo se muestra cuando se alcanza el límite -->
+    <div id="usageIndicator" style="display: none;"></div>
     
     <div class="converter-card">
       <div class="format-selector">
@@ -278,10 +304,9 @@
       }
     })();
 
-    // Language handling
+    // Language handling - siempre usar español
     function detectLanguage() {
-      const userLang = navigator.language || navigator.userLanguage || '';
-      return userLang.toLowerCase().startsWith('es') ? 'es' : 'en';
+      return 'es'; // Siempre español
     }
     function setLanguage(lang) {
       document.documentElement.lang = lang;
@@ -763,11 +788,39 @@
     document.getElementById('sourceFormat').addEventListener('change', updateQualityControl);
     document.getElementById('targetFormat').addEventListener('change', updateQualityControl);
 
-    // Función para actualizar el indicador de uso
+    // Función para actualizar el indicador de uso - solo mostrar cuando se alcance el límite
     function updateUsageIndicator() {
       const indicator = document.getElementById('usageIndicator');
       if (indicator) {
-        indicator.innerHTML = freemiumSystem.showUsageIndicator('imageConverter');
+        const stats = freemiumSystem.getUsageStats('imageConverter');
+        
+        // Solo mostrar si el límite está alcanzado y no es premium
+        if (!stats.isPremium && stats.daily >= stats.dailyLimit) {
+          indicator.style.display = 'block';
+          indicator.innerHTML = `
+            <div style="
+              margin: 0 0 var(--space-4) 0;
+              padding: 12px;
+              background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), rgba(239, 68, 68, 0.05));
+              border: 1px solid rgba(239, 68, 68, 0.2);
+              border-radius: 8px;
+              color: #991b1b;
+              font-size: 0.875rem;
+              text-align: center;
+              line-height: 1.5;
+            ">
+              Has alcanzado el límite diario de conversiones. 
+              <a href="subscription.html" style="
+                color: var(--primary-purple); 
+                text-decoration: none; 
+                font-weight: 600;
+                margin-left: 4px;
+              ">Descubre más opciones</a>
+            </div>
+          `;
+        } else {
+          indicator.style.display = 'none';
+        }
       }
     }
 

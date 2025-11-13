@@ -330,6 +330,7 @@
   </div>
 
   <script src="freemium-system.js"></script>
+  <script src="stripe-payment-system.js"></script>
   <script>
     // Mobile navbar
     (function initSubscriptionNavbar(){
@@ -381,14 +382,87 @@
         currentPlanBtn.style.color = 'var(--white)';
         currentPlanBtn.style.cursor = 'default';
       } else {
-        subscribeBtn.onclick = () => freemiumSystem.purchasePremium();
+        subscribeBtn.onclick = async () => {
+          try {
+            subscribeBtn.disabled = true;
+            subscribeBtn.textContent = 'Procesando...';
+            
+            // Obtener email del usuario (opcional)
+            const email = prompt('Ingresa tu email para recibir confirmaciones (opcional):') || null;
+            
+            // Crear sesión de checkout con Stripe
+            await stripePaymentSystem.createCheckoutSession(email);
+          } catch (error) {
+            console.error('Error iniciando pago:', error);
+            alert('Error iniciando el proceso de pago. Por favor intenta de nuevo.');
+            subscribeBtn.disabled = false;
+            subscribeBtn.textContent = 'Suscribirse Ahora';
+          }
+        };
       }
+    }
+
+    // Manejar parámetros de URL (éxito/cancelación)
+    function handleUrlParameters() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const success = urlParams.get('success');
+      const canceled = urlParams.get('canceled');
+      const sessionId = urlParams.get('session_id');
+
+      if (success && sessionId) {
+        // Pago exitoso - verificar y activar premium
+        stripePaymentSystem.handlePaymentSuccess(sessionId);
+      } else if (canceled) {
+        // Pago cancelado
+        showCanceledMessage();
+      }
+    }
+
+    function showCanceledMessage() {
+      const modal = document.createElement('div');
+      modal.className = 'payment-canceled-modal';
+      modal.innerHTML = `
+        <div class="payment-canceled-content">
+          <div class="cancel-icon">😔</div>
+          <h3>Pago Cancelado</h3>
+          <p>No te preocupes, puedes intentar de nuevo cuando quieras. Las herramientas gratuitas siguen disponibles.</p>
+          <button onclick="this.closest('.payment-canceled-modal').remove();" class="cancel-btn">
+            Entendido
+          </button>
+        </div>
+      `;
+
+      const style = document.createElement('style');
+      style.textContent = `
+        .payment-canceled-modal {
+          position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+          background: rgba(0, 0, 0, 0.8); display: flex; align-items: center;
+          justify-content: center; z-index: 10000; font-family: 'Inter', sans-serif;
+        }
+        .payment-canceled-content {
+          background: white; border-radius: 16px; padding: 2rem; text-align: center;
+          max-width: 400px; width: 90%; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .cancel-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .payment-canceled-content h3 { margin: 0 0 1rem 0; color: #1f2937; font-size: 1.5rem; }
+        .payment-canceled-content p { margin: 0 0 1.5rem 0; color: #374151; }
+        .cancel-btn {
+          background: var(--gray-200); color: var(--gray-700);
+          border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600;
+          cursor: pointer; font-size: 1rem; transition: background 0.2s;
+        }
+        .cancel-btn:hover { background: var(--gray-300); }
+      `;
+      
+      document.head.appendChild(style);
+      document.body.appendChild(modal);
     }
 
     // Initialize
     document.addEventListener('DOMContentLoaded', () => {
       setLanguage(detectLanguage());
       updateSubscriptionUI();
+      handleUrlParameters();
     });
   </script>
 </body>
