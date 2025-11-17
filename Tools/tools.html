@@ -67,8 +67,8 @@
       line-height: 1.5;
     }
 
-    /* Estilo para enlace premium en navegación */
-    .nav-premium {
+    /* Estilo para enlace de apoyo en navegación */
+    .nav-support {
       background: linear-gradient(135deg, rgba(167,139,250,0.1), rgba(212,255,101,0.1));
       border-radius: 20px;
       padding: 6px 12px !important;
@@ -77,7 +77,7 @@
       border: 1px solid rgba(167,139,250,0.2);
     }
 
-    .nav-premium:hover {
+    .nav-support:hover {
       background: linear-gradient(135deg, rgba(167,139,250,0.2), rgba(212,255,101,0.2));
       transform: translateY(-1px);
     }
@@ -90,17 +90,17 @@
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <div class="nav-logo">
-        <a href="../index-new.html#hero">
+        <a href="../index.html#hero">
           <img src="../images/ZenMiniLogo-cutout.png" alt="Zen Solutions">
         </a>
       </div>
       <div class="nav-menu" id="navMenu">
-        <a href="../index-new.html#about" class="nav-link" data-en="About" data-es="Nosotros">Nosotros</a>
-        <a href="../index-new.html#services" class="nav-link" data-en="Services" data-es="Servicios">Servicios</a>
-        <a href="../index-new.html#work" class="nav-link" data-en="Work" data-es="Trabajo">Trabajo</a>
+        <a href="../index.html#about" class="nav-link" data-en="About" data-es="Nosotros">Nosotros</a>
+        <a href="../index.html#services" class="nav-link" data-en="Services" data-es="Servicios">Servicios</a>
+        <a href="../index.html#work" class="nav-link" data-en="Work" data-es="Trabajo">Trabajo</a>
         <a href="/Tools/tools.html" class="nav-link" data-en="Tools" data-es="Herramientas">Herramientas</a>
-        <a href="subscription.html" class="nav-link nav-premium" data-en="Premium" data-es="Premium">Premium</a>
-        <a href="../index-new.html#contact" class="nav-link" data-en="Contact" data-es="Contacto">Contacto</a>
+        <a href="subscription.html" class="nav-link nav-support" data-en="Support" data-es="Apóyanos">Apóyanos</a>
+        <a href="../index.html#contact" class="nav-link" data-en="Contact" data-es="Contacto">Contacto</a>
       </div>
       <div class="nav-toggle" id="navToggle">
         <span></span><span></span><span></span>
@@ -110,16 +110,16 @@
 
   <header class="tools-hero">
     <h1 data-en="Zen Online Tools" data-es="Herramientas en Línea de Zen">Herramientas en Línea de Zen</h1>
-    <p data-en="Free and private tools that run right in your browser. No uploads, no tracking — just results." data-es="Herramientas gratuitas y privadas que corren en tu navegador. Sin subidas, sin rastreo — solo resultados.">Herramientas gratuitas y privadas que corren en tu navegador. Sin subidas, sin rastreo — solo resultados.</p>
+    <p data-en="Free privacy-first tools that run right in your browser. If they save you time, feel free to invite us to a coffee." data-es="Herramientas gratuitas y privadas que corren en tu navegador. Si te ahorran tiempo, puedes invitarnos un café.">Herramientas gratuitas y privadas que corren en tu navegador. Si te ahorran tiempo, puedes invitarnos un café.</p>
     
     <!-- Información freemium -->
     <div class="freemium-info">
       <div class="freemium-badge">
-        <span class="badge-icon">🚀</span>
-        <span class="badge-text">Herramientas Gratuitas</span>
+        <span class="badge-icon">☕️</span>
+        <span class="badge-text">Herramientas Gratuitas gracias a la comunidad</span>
       </div>
       <p class="freemium-description">
-        Usa nuestras herramientas gratis con límites generosos. <a href="subscription.html" style="color: var(--primary-purple); text-decoration: none; font-weight: 600;">Descubre más opciones</a>.
+        Todo corre gratis en tu navegador. Si alguna herramienta te salvó el día, <a href="subscription.html" style="color: var(--primary-purple); text-decoration: none; font-weight: 600;">invítanos un café</a> para seguir construyendo más.
       </p>
     </div>
   </header>
@@ -272,20 +272,26 @@
         <div class="tool-actions"><a class="tool-btn" href="merge-pdf.html" data-en="Open" data-es="Abrir">Abrir</a></div>
       </article>
 
-      <article class="tool-card premium-only" aria-disabled="true">
-        <div class="tool-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M6 4h12v4H6zM6 10h12v4H6zM6 16h12v4H6z"/></svg>
-        </div>
-        <h3 class="tool-title" data-en="Split PDF" data-es="Dividir PDF">Dividir PDF</h3>
-        <p class="tool-desc" data-en="Extract page ranges from PDFs. Premium feature coming soon." data-es="Extrae rangos de páginas de un PDF. Característica premium próximamente.">Extrae rangos de páginas de un PDF. Característica premium próximamente.</p>
-        <div class="tool-actions"><a class="tool-btn" href="#" onclick="return false;" style="background:var(--gray-400);" data-en="Premium Soon" data-es="Premium Pronto">Premium Pronto</a></div>
-      </article>
+    </div>
+
+    <div style="text-align: center; margin: 3rem 0 2rem 0; padding: 2rem;">
+      <a href="subscription.html" style="
+        color: var(--primary-purple); 
+        text-decoration: none; 
+        font-size: 1.1rem; 
+        font-weight: 600;
+        padding: 0.75rem 1.5rem;
+        border-radius: var(--radius-lg);
+        display: inline-block;
+        transition: all var(--transition-normal);
+        border: 2px solid var(--primary-purple);
+      " onmouseover="this.style.background='var(--primary-purple)'; this.style.color='var(--white)';" onmouseout="this.style.background='transparent'; this.style.color='var(--primary-purple)';" data-en="Did it help? Buy us a coffee ☕" data-es="¿Te sirvió? Invítanos un café ☕">¿Te sirvió? Invítanos un café ☕</a>
     </div>
   </main>
 
   <div class="tools-footer">
     &copy; 2025 Zen Solutions. <span data-en="Powered by browser technology." data-es="Desarrollado con tecnología del navegador.">Desarrollado con tecnología de Zen Solutions.</span>
-    <a href="../index-new.html" style="color:var(--primary-purple);text-decoration:none;" data-en="Back to Home" data-es="Volver al Inicio">Volver al Inicio</a>
+    <a href="../index.html" style="color:var(--primary-purple);text-decoration:none;" data-en="Back to Home" data-es="Volver al Inicio">Volver al Inicio</a>
   </div>
 
   <script src="freemium-system.js"></script>
@@ -308,9 +314,10 @@
       }
     })();
 
-    // Language handling - siempre usar español
+    // Language handling
     function detectLanguage() {
-      return 'es'; // Siempre español
+      const userLang = navigator.language || navigator.userLanguage || '';
+      return userLang.toLowerCase().startsWith('es') ? 'es' : 'en';
     }
     function setLanguage(lang) {
       document.documentElement.lang = lang;
@@ -319,65 +326,8 @@
         if (text) el.textContent = text;
       });
     }
-    // Función para mostrar información de límites solo cuando se alcanza el límite
-    function updateToolCards() {
-      const cards = document.querySelectorAll('.tool-card:not(.premium-only)');
-      cards.forEach(card => {
-        // Eliminar cualquier mensaje de límite existente para evitar duplicados
-        const existingMessage = card.querySelector('.tool-limit-message');
-        if (existingMessage) {
-          existingMessage.remove();
-        }
-        
-        const toolName = card.querySelector('.tool-title').textContent.toLowerCase();
-        let toolKey = '';
-        
-        if (toolName.includes('convertidor') || toolName.includes('converter')) {
-          toolKey = 'imageConverter';
-        } else if (toolName.includes('pdf') && toolName.includes('imagen')) {
-          toolKey = 'imageToPdf';
-        } else if (toolName.includes('unir') || toolName.includes('merge')) {
-          toolKey = 'mergePdf';
-        }
-        
-        if (toolKey) {
-          const stats = freemiumSystem.getUsageStats(toolKey);
-          
-          // Solo mostrar información si el límite está alcanzado y no es premium
-          if (!stats.isPremium && stats.daily >= stats.dailyLimit) {
-            const limitMessage = document.createElement('div');
-            limitMessage.className = 'tool-limit-message';
-            limitMessage.innerHTML = `
-              <p style="
-                margin: 0;
-                padding: 12px;
-                background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), rgba(239, 68, 68, 0.05));
-                border: 1px solid rgba(239, 68, 68, 0.2);
-                border-radius: 8px;
-                color: #991b1b;
-                font-size: 0.875rem;
-                text-align: center;
-                line-height: 1.5;
-              ">
-                Has alcanzado el límite diario de conversiones. 
-                <a href="subscription.html" style="
-                  color: var(--primary-purple); 
-                  text-decoration: none; 
-                  font-weight: 600;
-                  margin-left: 4px;
-                ">Descubre más opciones</a>
-              </p>
-            `;
-            
-            card.querySelector('.tool-actions').appendChild(limitMessage);
-          }
-        }
-      });
-    }
-
     document.addEventListener('DOMContentLoaded', () => {
       setLanguage(detectLanguage());
-      updateToolCards();
     });
   </script>
 </body>
