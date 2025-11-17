@@ -11,11 +11,7 @@
   <link rel="stylesheet" href="../styles-new.css">
   <link rel="stylesheet" href="freemium-styles.css">
   <style>
-    body { 
-      min-height: 100vh; 
-      margin: 0; 
-      cursor: auto !important; 
-    }
+    body { min-height: 100vh; margin: 0; }
     .converter-hero {
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       padding: 6rem 1rem 2.5rem 1rem;
@@ -45,31 +41,9 @@
     }
     .format-select {
       padding: var(--space-3); border: 2px solid var(--gray-200); border-radius: var(--radius-lg);
-      font-size: 1.1rem; background: var(--white); transition: all var(--transition-normal);
-      font-weight: 700; color: var(--dark-blue); cursor: pointer;
-      appearance: none; -webkit-appearance: none; -moz-appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 12 12'%3E%3Cpath fill='%231f2937' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right var(--space-3) center;
-      padding-right: calc(var(--space-3) + 24px);
-      min-height: 48px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      font-size: 1rem; background: var(--white); transition: border-color var(--transition-normal);
     }
-    .format-select:focus { 
-      outline: none; 
-      border-color: var(--primary-purple); 
-      box-shadow: 0 0 0 3px rgba(167,139,250,0.15), 0 2px 4px rgba(0,0,0,0.1); 
-      transform: translateY(-1px);
-    }
-    .format-select:hover { 
-      border-color: var(--primary-purple); 
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    .format-select option {
-      font-weight: 600;
-      padding: var(--space-2);
-      background: var(--white);
-    }
+    .format-select:focus { outline: none; border-color: var(--primary-purple); }
     .arrow-icon {
       font-size: 1.5rem; color: var(--primary-purple); font-weight: bold;
     }
@@ -123,11 +97,48 @@
     .quality-control {
       margin-top: var(--space-4); display: none;
     }
-    .quality-slider {
-      width: 100%; margin: var(--space-2) 0;
+    .quality-options {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-3);
+      margin-top: var(--space-3);
     }
-    .quality-label {
-      display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--gray-600);
+    .quality-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-3);
+      border: 2px solid var(--gray-300);
+      border-radius: var(--radius-lg);
+      background: var(--white);
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      font-weight: 600;
+      color: var(--gray-700);
+    }
+    .quality-btn:hover {
+      border-color: var(--primary-purple);
+      background: rgba(167, 139, 250, 0.05);
+      transform: translateY(-2px);
+    }
+    .quality-btn.active {
+      border-color: var(--primary-purple);
+      background: linear-gradient(135deg, rgba(167,139,250,0.15), rgba(212,255,101,0.15));
+      color: var(--primary-purple);
+      box-shadow: 0 2px 8px rgba(167,139,250,0.3);
+    }
+    .quality-btn-label {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .quality-btn-size {
+      font-size: 0.75rem;
+      color: var(--gray-500);
+      font-weight: 400;
+    }
+    .quality-btn.active .quality-btn-size {
+      color: var(--primary-purple);
     }
     .back-btn {
       background: var(--gray-200); color: var(--gray-700); border: none;
@@ -188,6 +199,20 @@
         width: 100%;
         text-align: center;
       }
+      .quality-options {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-2);
+      }
+      .quality-btn {
+        padding: var(--space-2);
+        font-size: 0.85rem;
+      }
+      .quality-btn-label {
+        font-size: 0.85rem;
+      }
+      .quality-btn-size {
+        font-size: 0.7rem;
+      }
     }
   </style>
 </head>
@@ -196,16 +221,16 @@
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <div class="nav-logo">
-        <a href="../index-new.html#hero">
+        <a href="../index.html#hero">
           <img src="../images/ZenMiniLogo-cutout.png" alt="Zen Solutions">
         </a>
       </div>
       <div class="nav-menu" id="navMenu">
-        <a href="../index-new.html#about" class="nav-link" data-en="About" data-es="Nosotros">Nosotros</a>
-        <a href="../index-new.html#services" class="nav-link" data-en="Services" data-es="Servicios">Servicios</a>
-        <a href="../index-new.html#work" class="nav-link" data-en="Work" data-es="Trabajo">Trabajo</a>
+        <a href="../index.html#about" class="nav-link" data-en="About" data-es="Nosotros">Nosotros</a>
+        <a href="../index.html#services" class="nav-link" data-en="Services" data-es="Servicios">Servicios</a>
+        <a href="../index.html#work" class="nav-link" data-en="Work" data-es="Trabajo">Trabajo</a>
         <a href="/Tools/tools.html" class="nav-link" data-en="Tools" data-es="Herramientas">Herramientas</a>
-        <a href="../index-new.html#contact" class="nav-link" data-en="Contact" data-es="Contacto">Contacto</a>
+        <a href="../index.html#contact" class="nav-link" data-en="Contact" data-es="Contacto">Contacto</a>
       </div>
       <div class="nav-toggle" id="navToggle">
         <span></span><span></span><span></span>
@@ -220,9 +245,6 @@
 
   <main class="converter-container">
     <a href="tools.html" class="back-btn" data-en="← Back to Tools" data-es="← Volver a Herramientas">← Volver a Herramientas</a>
-    
-    <!-- Indicador de uso freemium - solo se muestra cuando se alcanza el límite -->
-    <div id="usageIndicator" style="display: none;"></div>
     
     <div class="converter-card">
       <div class="format-selector">
@@ -262,10 +284,23 @@
 
       <div class="quality-control" id="qualityControl">
         <label data-en="Quality (for lossy formats)" data-es="Calidad (para formatos con pérdida)">Calidad (para formatos con pérdida)</label>
-        <input type="range" id="qualitySlider" class="quality-slider" min="0.1" max="1" step="0.1" value="0.9">
-        <div class="quality-label">
-          <span data-en="Lower file size" data-es="Menor tamaño">Menor tamaño</span>
-          <span data-en="Higher quality" data-es="Mayor calidad">Mayor calidad</span>
+        <div class="quality-options" id="qualityOptions">
+          <button class="quality-btn" data-quality="0.5" data-label="Muy baja">
+            <span class="quality-btn-label">Muy baja</span>
+            <span class="quality-btn-size" id="size-very-low">-</span>
+          </button>
+          <button class="quality-btn" data-quality="0.7" data-label="Baja">
+            <span class="quality-btn-label">Baja</span>
+            <span class="quality-btn-size" id="size-low">-</span>
+          </button>
+          <button class="quality-btn active" data-quality="0.85" data-label="Normal">
+            <span class="quality-btn-label">Normal</span>
+            <span class="quality-btn-size" id="size-normal">-</span>
+          </button>
+          <button class="quality-btn" data-quality="0.95" data-label="Excelente">
+            <span class="quality-btn-label">Excelente</span>
+            <span class="quality-btn-size" id="size-excellent">-</span>
+          </button>
         </div>
       </div>
 
@@ -281,7 +316,7 @@
 
   <div class="tools-footer">
     &copy; 2025 Zen Solutions. <span data-en="Powered by browser technology." data-es="Desarrollado con tecnología Zen Solutions.">Desarrollado con tecnología Zen Solutions.</span>
-    <a href="../index-new.html" style="color:var(--primary-purple);text-decoration:none;" data-en="Back to Home" data-es="Volver al Inicio">Volver al Inicio</a>
+    <a href="../index.html" style="color:var(--primary-purple);text-decoration:none;" data-en="Back to Home" data-es="Volver al Inicio">Volver al Inicio</a>
   </div>
 
   <script src="freemium-system.js"></script>
@@ -304,9 +339,10 @@
       }
     })();
 
-    // Language handling - siempre usar español
+    // Language handling
     function detectLanguage() {
-      return 'es'; // Siempre español
+      const userLang = navigator.language || navigator.userLanguage || '';
+      return userLang.toLowerCase().startsWith('es') ? 'es' : 'en';
     }
     function setLanguage(lang) {
       document.documentElement.lang = lang;
@@ -339,6 +375,7 @@
       }
       
       updateQualityControl();
+      updateQualityEstimate();
     }
 
     // Update quality control visibility
@@ -411,9 +448,14 @@
         convertBtn.disabled = false;
         autoDetectFormat(selectedFiles[0]);
         updateUploadArea();
+        updateQualityEstimate();
       } else {
         convertBtn.disabled = true;
         resetUploadArea();
+        // Reset size estimates
+        document.querySelectorAll('.quality-btn-size').forEach(el => {
+          el.textContent = '-';
+        });
       }
     }
 
@@ -438,6 +480,7 @@
       }
       
       updateQualityControl();
+      updateQualityEstimate();
     }
 
     function updateUploadArea() {
@@ -509,7 +552,8 @@
 
       const sourceFormat = document.getElementById('sourceFormat').value;
       const targetFormat = document.getElementById('targetFormat').value;
-      const quality = parseFloat(document.getElementById('qualitySlider').value);
+      const activeQualityBtn = document.querySelector('.quality-btn.active');
+      const quality = activeQualityBtn ? parseFloat(activeQualityBtn.getAttribute('data-quality')) : 0.85;
 
       const convertedFiles = [];
 
@@ -529,9 +573,6 @@
 
       // Registrar uso en el sistema freemium
       freemiumSystem.recordUsage('imageConverter');
-      
-      // Actualizar indicador de uso
-      updateUsageIndicator();
       
       // Auto download all converted files (only on desktop)
       autoDownloadFiles(convertedFiles);
@@ -785,50 +826,125 @@
     }
 
     // Format change events
-    document.getElementById('sourceFormat').addEventListener('change', updateQualityControl);
-    document.getElementById('targetFormat').addEventListener('change', updateQualityControl);
+    document.getElementById('sourceFormat').addEventListener('change', () => {
+      updateQualityControl();
+      updateQualityEstimate();
+    });
+    document.getElementById('targetFormat').addEventListener('change', () => {
+      updateQualityControl();
+      updateQualityEstimate();
+    });
 
-    // Función para actualizar el indicador de uso - solo mostrar cuando se alcance el límite
-    function updateUsageIndicator() {
-      const indicator = document.getElementById('usageIndicator');
-      if (indicator) {
-        const stats = freemiumSystem.getUsageStats('imageConverter');
-        
-        // Solo mostrar si el límite está alcanzado y no es premium
-        if (!stats.isPremium && stats.daily >= stats.dailyLimit) {
-          indicator.style.display = 'block';
-          indicator.innerHTML = `
-            <div style="
-              margin: 0 0 var(--space-4) 0;
-              padding: 12px;
-              background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), rgba(239, 68, 68, 0.05));
-              border: 1px solid rgba(239, 68, 68, 0.2);
-              border-radius: 8px;
-              color: #991b1b;
-              font-size: 0.875rem;
-              text-align: center;
-              line-height: 1.5;
-            ">
-              Has alcanzado el límite diario de conversiones. 
-              <a href="subscription.html" style="
-                color: var(--primary-purple); 
-                text-decoration: none; 
-                font-weight: 600;
-                margin-left: 4px;
-              ">Descubre más opciones</a>
-            </div>
-          `;
-        } else {
-          indicator.style.display = 'none';
-        }
+    // Initialize quality buttons
+    function initQualityButtons() {
+      const qualityButtons = document.querySelectorAll('.quality-btn');
+      qualityButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          qualityButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          updateQualityEstimate();
+        });
+      });
+    }
+
+    // Calculate and update estimated file sizes
+    async function updateQualityEstimate() {
+      if (selectedFiles.length === 0) return;
+      
+      const targetFormat = document.getElementById('targetFormat').value;
+      const lossyFormats = ['jpg', 'webp'];
+      
+      if (!lossyFormats.includes(targetFormat)) {
+        // Hide size estimates for lossless formats
+        document.querySelectorAll('.quality-btn-size').forEach(el => {
+          el.textContent = '-';
+        });
+        return;
       }
+
+      const qualityButtons = document.querySelectorAll('.quality-btn');
+      const firstFile = selectedFiles[0];
+      
+      // Show loading state
+      qualityButtons.forEach(btn => {
+        const sizeElement = btn.querySelector('.quality-btn-size');
+        if (sizeElement) {
+          sizeElement.textContent = '...';
+        }
+      });
+      
+      // Map format to correct MIME type
+      const mimeTypeMap = {
+        'jpg': 'image/jpeg',
+        'jpeg': 'image/jpeg',
+        'webp': 'image/webp'
+      };
+      const mimeType = mimeTypeMap[targetFormat] || `image/${targetFormat}`;
+      
+      // Create a temporary canvas to estimate sizes
+      const img = new Image();
+      const reader = new FileReader();
+      
+      reader.onload = (e) => {
+        img.onload = () => {
+          // Process each quality option separately with its own canvas
+          const promises = Array.from(qualityButtons).map(btn => {
+            return new Promise((resolve) => {
+              const quality = parseFloat(btn.getAttribute('data-quality'));
+              const sizeId = btn.querySelector('.quality-btn-size').id;
+              
+              // Create a fresh canvas for each quality to avoid conflicts
+              const canvas = document.createElement('canvas');
+              canvas.width = img.width;
+              canvas.height = img.height;
+              const ctx = canvas.getContext('2d');
+              
+              // Fill with white background for JPG (transparency handling)
+              if (targetFormat === 'jpg' || targetFormat === 'jpeg') {
+                ctx.fillStyle = '#FFFFFF';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+              }
+              
+              ctx.drawImage(img, 0, 0);
+              
+              canvas.toBlob((blob) => {
+                if (blob) {
+                  const estimatedSize = blob.size * selectedFiles.length;
+                  const sizeElement = document.getElementById(sizeId);
+                  if (sizeElement) {
+                    sizeElement.textContent = formatFileSize(estimatedSize);
+                  }
+                } else {
+                  const sizeElement = document.getElementById(sizeId);
+                  if (sizeElement) {
+                    sizeElement.textContent = '-';
+                  }
+                }
+                resolve();
+              }, mimeType, quality);
+            });
+          });
+          
+          Promise.all(promises).catch(err => {
+            console.error('Error estimating sizes:', err);
+            qualityButtons.forEach(btn => {
+              const sizeElement = btn.querySelector('.quality-btn-size');
+              if (sizeElement && sizeElement.textContent === '...') {
+                sizeElement.textContent = '-';
+              }
+            });
+          });
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(firstFile);
     }
 
     // Initialize
     document.addEventListener('DOMContentLoaded', () => {
       setLanguage(detectLanguage());
       initializeFromURL();
-      updateUsageIndicator();
+      initQualityButtons();
     });
   </script>
 </body>

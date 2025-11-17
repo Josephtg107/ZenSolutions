@@ -32,6 +32,7 @@
     .row .actions { display:flex; gap:.4rem; }
     .row button { padding:.35rem .6rem; border-radius:8px; border:1px solid var(--gray-300); background: var(--gray-100); cursor:pointer; }
     .result { text-align:center; margin-top: .75rem; color: var(--primary-purple); font-weight:600; }
+    .tools-footer { text-align:center; color:var(--gray-600); font-size:.95rem; margin: 4rem 0 2rem 0; }
   </style>
 </head>
 <body>
@@ -39,16 +40,16 @@
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <div class="nav-logo">
-        <a href="../index-new.html#hero">
+        <a href="../index.html#hero">
           <img src="../images/ZenMiniLogo-cutout.png" alt="Zen Solutions">
         </a>
       </div>
       <div class="nav-menu" id="navMenu">
-        <a href="../index-new.html#about" class="nav-link" data-en="About" data-es="Nosotros">Nosotros</a>
-        <a href="../index-new.html#services" class="nav-link" data-en="Services" data-es="Servicios">Servicios</a>
-        <a href="../index-new.html#work" class="nav-link" data-en="Work" data-es="Trabajo">Trabajo</a>
+        <a href="../index.html#about" class="nav-link" data-en="About" data-es="Nosotros">Nosotros</a>
+        <a href="../index.html#services" class="nav-link" data-en="Services" data-es="Servicios">Servicios</a>
+        <a href="../index.html#work" class="nav-link" data-en="Work" data-es="Trabajo">Trabajo</a>
         <a href="/Tools/tools.html" class="nav-link" data-en="Tools" data-es="Herramientas">Herramientas</a>
-        <a href="../index-new.html#contact" class="nav-link" data-en="Contact" data-es="Contacto">Contacto</a>
+        <a href="../index.html#contact" class="nav-link" data-en="Contact" data-es="Contacto">Contacto</a>
       </div>
       <div class="nav-toggle" id="navToggle"><span></span><span></span><span></span></div>
     </div>
@@ -60,9 +61,6 @@
   </header>
 
   <section class="merge section-container">
-    <!-- Indicador de uso freemium -->
-    <div id="usageIndicator"></div>
-    
     <h2 data-en="Add your PDFs and set the order" data-es="Agrega tus PDFs y define el orden">Agrega tus PDFs y define el orden</h2>
     <div class="controls">
       <label for="fileInput" class="btn" data-en="Select PDFs" data-es="Seleccionar PDFs">Seleccionar PDFs</label>
@@ -77,6 +75,10 @@
       <a href="/Tools/tools.html" style="color:var(--primary-purple);text-decoration:none;font-weight:600;" data-en="Back to Tools" data-es="Volver a Herramientas">Volver a Herramientas</a>
     </div>
   </section>
+
+  <div class="tools-footer">
+    &copy; 2025 Zen Solutions. <span data-en="Powered by browser technology." data-es="Desarrollado con tecnología del navegador.">Desarrollado con tecnología del navegador.</span>
+  </div>
 
   <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
   <script src="freemium-system.js"></script>
@@ -183,9 +185,6 @@
       // Registrar uso en el sistema freemium
       freemiumSystem.recordUsage('mergePdf');
       
-      // Actualizar indicador de uso
-      updateUsageIndicator();
-      
       result.textContent = 'Uniendo PDFs…';
       try {
         const PDFNS = window.PDFLib || window.pdfLib || window['pdf-lib'];
@@ -213,18 +212,9 @@
       }
     });
 
-    // Función para actualizar el indicador de uso
-    function updateUsageIndicator() {
-      const indicator = document.getElementById('usageIndicator');
-      if (indicator) {
-        indicator.innerHTML = freemiumSystem.showUsageIndicator('mergePdf');
-      }
-    }
-
     // Initialize
     document.addEventListener('DOMContentLoaded', () => {
       setLanguage(detectLanguage());
-      updateUsageIndicator();
     });
   </script>
 </body>
