@@ -739,6 +739,11 @@ img {
   text-decoration: none;
   color: inherit;
   display: block;
+  cursor: default;
+}
+
+.service-card a {
+  cursor: pointer;
 }
 
 .service-card::before {
