@@ -759,12 +759,14 @@ img {
 }
 
 .service-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-xl);
+  /* Hover effects disabled - cards are not clickable */
+  /* transform: translateY(-8px);
+  box-shadow: var(--shadow-xl); */
 }
 
 .service-card:hover::before {
-  transform: scaleX(1);
+  /* Hover effects disabled - cards are not clickable */
+  /* transform: scaleX(1); */
 }
 
 .service-icon {
