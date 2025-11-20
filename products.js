@@ -19,7 +19,7 @@ const downloadBtn = document.getElementById('downloadBtn');
 const editorTitle = document.getElementById('editorTitle');
 const editorSubtitle = document.getElementById('editorSubtitle');
 
-const GIF_WORKER_SCRIPT_URL = 'https://cdn.jsdelivr.net/npm/gif.js@0.2.0/dist/gif.worker.js';
+const GIF_WORKER_SCRIPT_URL = 'gif.worker.js';
 const MAX_CANVAS_DIMENSION = 900; // px
 
 const previewAnimationMap = {
