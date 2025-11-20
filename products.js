@@ -19,6 +19,9 @@ const downloadBtn = document.getElementById('downloadBtn');
 const editorTitle = document.getElementById('editorTitle');
 const editorSubtitle = document.getElementById('editorSubtitle');
 
+const GIF_WORKER_SCRIPT_URL = 'https://cdn.jsdelivr.net/npm/gif.js@0.2.0/dist/gif.worker.js';
+const MAX_CANVAS_DIMENSION = 900; // px
+
 const previewAnimationMap = {
   'rotate': 'rotate-animation',
   'slide-up': 'slide-up-animation',
@@ -333,12 +336,18 @@ function downloadAnimatedGIF() {
     // Set canvas size - use square for better GIF quality
     const maxSize = Math.max(img.width, img.height);
     const padding = currentAnimationType === 'slide-up' ? 100 : 50; // More padding for slide-up
-    canvas.width = maxSize + padding * 2;
-    canvas.height = maxSize + padding * 2;
+    const scale = Math.min(1, MAX_CANVAS_DIMENSION / maxSize);
+    const scaledWidth = Math.round(img.width * scale);
+    const scaledHeight = Math.round(img.height * scale);
+    const adjustedPadding = Math.round(padding * scale);
+    const squareSize = Math.max(scaledWidth, scaledHeight);
+
+    canvas.width = squareSize + adjustedPadding * 2;
+    canvas.height = squareSize + adjustedPadding * 2;
     
     // Center the image
-    const x = (canvas.width - img.width) / 2;
-    const y = (canvas.height - img.height) / 2;
+    const x = (canvas.width - scaledWidth) / 2;
+    const y = (canvas.height - scaledHeight) / 2;
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
     
@@ -372,15 +381,15 @@ function downloadAnimatedGIF() {
         ctx.translate(canvas.width / 2, canvas.height / 2);
         ctx.rotate(angle);
         ctx.translate(-canvas.width / 2, -canvas.height / 2);
-        ctx.drawImage(img, x, y);
+        ctx.drawImage(img, x, y, scaledWidth, scaledHeight);
       } else if (currentAnimationType === 'slide-up') {
         // Ease out animation for smooth slide-up
         const easedProgress = 1 - Math.pow(1 - progress, 3);
         // Start from bottom (padding) and slide up to center
-        const startY = padding + img.height;
+        const startY = adjustedPadding + scaledHeight;
         const endY = y;
         const currentY = startY - (startY - endY) * easedProgress;
-        ctx.drawImage(img, x, currentY);
+        ctx.drawImage(img, x, currentY, scaledWidth, scaledHeight);
       } else if (currentAnimationType === 'zoom-pop') {
         const zoom = 0.85 + 0.25 * Math.sin(progress * Math.PI);
         const blur = 6 * (1 - zoom);
@@ -389,14 +398,14 @@ function downloadAnimatedGIF() {
         ctx.translate(-centerX, -centerY);
         ctx.filter = `blur(${Math.max(0, blur)}px)`;
         ctx.globalAlpha = 0.75 + 0.25 * Math.sin(progress * Math.PI);
-        ctx.drawImage(img, x, y);
+        ctx.drawImage(img, x, y, scaledWidth, scaledHeight);
       } else if (currentAnimationType === 'tilt-sway') {
         const sway = Math.sin(progress * Math.PI * 2) * (Math.PI / 12); // ~15deg
         const lift = Math.sin(progress * Math.PI * 2) * 20;
         ctx.translate(centerX, centerY + lift);
         ctx.rotate(sway);
         ctx.translate(-centerX, -centerY);
-        ctx.drawImage(img, x, y);
+        ctx.drawImage(img, x, y, scaledWidth, scaledHeight);
       } else if (currentAnimationType === 'pulse-glow') {
         const pulseWave = Math.sin(progress * Math.PI * 2);
         const pulse = 0.95 + 0.12 * pulseWave;
@@ -406,7 +415,7 @@ function downloadAnimatedGIF() {
         ctx.shadowColor = 'rgba(167,139,250,0.8)';
         ctx.shadowBlur = Math.max(20, 60 + 40 * pulseWave);
         ctx.globalAlpha = 0.85 + 0.15 * pulseWave;
-        ctx.drawImage(img, x, y);
+        ctx.drawImage(img, x, y, scaledWidth, scaledHeight);
       }
       
       ctx.restore();
@@ -420,22 +429,31 @@ function downloadAnimatedGIF() {
     // Initialize GIF.js - Use workers: 0 to avoid CORS issues with worker script
     try {
       const gifOptions = {
-        workers: 0, // Use main thread to avoid CORS issues with worker script
-        quality: 20, // Increase quality slightly
+        workers: 2,
+        quality: 20,
         width: canvas.width,
         height: canvas.height,
-        repeat: 0 // Loop forever
+        repeat: 0, // Loop forever
+        workerScript: GIF_WORKER_SCRIPT_URL
       };
       
       const gif = new GIF(gifOptions);
       
       // Set timeout for safety (longer timeout)
       let timeout = setTimeout(() => {
+        if (gif && typeof gif.abort === 'function') {
+          gif.abort();
+        }
         const lang = document.documentElement.lang || 'es';
         const message = lang === 'es' ? 'La generación está tomando mucho tiempo. Por favor intenta de nuevo.' : 'Generation is taking too long. Please try again.';
         alert(message);
         downloadBtn.disabled = false;
         downloadBtn.textContent = originalText;
+        logAnalyticsEvent('animation_gif_generation_timeout', {
+          animation_type: currentAnimationType,
+          file_type: lastUploadedFileMeta?.type,
+          file_size: lastUploadedFileMeta?.size
+        });
       }, 60000); // 60 second timeout
       
       // Register event handlers BEFORE adding frames
