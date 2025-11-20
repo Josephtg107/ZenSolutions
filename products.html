@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  
+  <title>Productos - Zen Solutions</title>
+  <link rel="icon" href="Icon/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles-new.css">
+  <link rel="stylesheet" href="products.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <a href="index.html#hero">
+          <img src="images/ZenMiniLogo-cutout.png" alt="Zen Solutions">
+        </a>
+      </div>
+      
+      <div class="nav-menu" id="navMenu">
+        <a href="index.html#services" class="nav-link" data-es="Servicios" data-en="Services">Servicios</a>
+        <a href="index.html#work" class="nav-link" data-es="Clientes" data-en="Clients">Clientes</a>
+        <a href="Tools/tools.html" class="nav-link" data-es="Herramientas" data-en="Tools">Herramientas</a>
+        <a href="products.html" class="nav-link active" data-es="Productos" data-en="Products">Productos</a>
+        <a href="contacto.html" class="nav-link" data-es="Contacto" data-en="Contact">Contacto</a>
+      </div>
+
+      <div class="nav-toggle" id="navToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Animations Section -->
+  <section id="animations" class="products-section animations-section" style="margin-top: calc(60px + var(--space-8));">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title" data-es="Animaciones" data-en="Animations">Animaciones</h2>
+        <p class="section-subtitle" data-es="Crea animaciones increíbles para tus imágenes en segundos" data-en="Create amazing animations for your images in seconds">
+          Crea animaciones increíbles para tus imágenes en segundos
+        </p>
+      </div>
+      <div class="animations-grid" id="animationsGrid">
+
+        <!-- Animation Card - Rotación -->
+        <div class="animation-card" data-animation-type="rotate">
+          <div class="animation-preview">
+            <div class="animation-demo rotate-demo">
+              <div class="demo-image">
+                <img src="images/ZenMiniLogo-cutout.png" alt="Zen Solutions Logo" class="demo-logo">
+              </div>
+            </div>
+          </div>
+          <div class="animation-info">
+            <h3 class="animation-title" data-es="Rotación" data-en="Rotation">Rotación</h3>
+            <p class="animation-description" data-es="Animación de rotación completa de 360°" data-en="Full 360° rotation animation">
+              Rotación completa de 360°
+            </p>
+            <div class="animation-duration">
+              <span data-es="Duración:" data-en="Duration:">Duración:</span>
+              <span>3-4 segundos</span>
+            </div>
+          </div>
+          <button class="animation-btn" data-es="Usar Animación" data-en="Use Animation">Usar Animación</button>
+        </div>
+
+        <!-- Animation Card - Slide Up -->
+        <div class="animation-card" data-animation-type="slide-up">
+          <div class="animation-preview">
+            <div class="animation-demo slide-up-demo">
+              <div class="demo-image">
+                <img src="images/ZenMiniLogo-cutout.png" alt="Zen Solutions Logo" class="demo-logo">
+              </div>
+            </div>
+          </div>
+          <div class="animation-info">
+            <h3 class="animation-title" data-es="Deslizar Arriba" data-en="Slide Up">Deslizar Arriba</h3>
+            <p class="animation-description" data-es="Animación de entrada desde abajo hacia arriba" data-en="Entry animation from bottom to top">
+              Entrada desde abajo hacia arriba
+            </p>
+            <div class="animation-duration">
+              <span data-es="Duración:" data-en="Duration:">Duración:</span>
+              <span>3-4 segundos</span>
+            </div>
+          </div>
+          <button class="animation-btn" data-es="Usar Animación" data-en="Use Animation">Usar Animación</button>
+        </div>
+
+        <!-- Animation Card - Zoom Pop -->
+        <div class="animation-card" data-animation-type="zoom-pop">
+          <div class="animation-preview">
+            <div class="animation-demo zoom-pop-demo">
+              <div class="demo-image">
+                <img src="images/ZenMiniLogo-cutout.png" alt="Zen Solutions Logo" class="demo-logo">
+              </div>
+            </div>
+          </div>
+          <div class="animation-info">
+            <h3 class="animation-title" data-es="Zoom Pop" data-en="Zoom Pop">Zoom Pop</h3>
+            <p class="animation-description" data-es="Entrada dramática con zoom, blur ligero y brillo." data-en="Dramatic zoom burst with subtle blur and glow.">
+              Entrada dramática con zoom, blur ligero y brillo.
+            </p>
+            <div class="animation-duration">
+              <span data-es="Duración:" data-en="Duration:">Duración:</span>
+              <span>3-4 segundos</span>
+            </div>
+          </div>
+          <button class="animation-btn" data-es="Usar Animación" data-en="Use Animation">Usar Animación</button>
+        </div>
+
+        <!-- Animation Card - Tilt & Sway -->
+        <div class="animation-card" data-animation-type="tilt-sway">
+          <div class="animation-preview">
+            <div class="animation-demo tilt-sway-demo">
+              <div class="demo-image">
+                <img src="images/ZenMiniLogo-cutout.png" alt="Zen Solutions Logo" class="demo-logo">
+              </div>
+            </div>
+          </div>
+          <div class="animation-info">
+            <h3 class="animation-title" data-es="Tilt & Sway" data-en="Tilt & Sway">Tilt & Sway</h3>
+            <p class="animation-description" data-es="Movimiento con inclinación 3D estilo holograma." data-en="3D-inspired tilt and sway, hologram style.">
+              Movimiento con inclinación 3D estilo holograma.
+            </p>
+            <div class="animation-duration">
+              <span data-es="Duración:" data-en="Duration:">Duración:</span>
+              <span>3-4 segundos</span>
+            </div>
+          </div>
+          <button class="animation-btn" data-es="Usar Animación" data-en="Use Animation">Usar Animación</button>
+        </div>
+
+        <!-- Animation Card - Pulse Glow -->
+        <div class="animation-card" data-animation-type="pulse-glow">
+          <div class="animation-preview">
+            <div class="animation-demo pulse-glow-demo">
+              <div class="demo-image">
+                <img src="images/ZenMiniLogo-cutout.png" alt="Zen Solutions Logo" class="demo-logo">
+              </div>
+            </div>
+          </div>
+          <div class="animation-info">
+            <h3 class="animation-title" data-es="Pulse Glow" data-en="Pulse Glow">Pulse Glow</h3>
+            <p class="animation-description" data-es="Pulso con resplandor eléctrico y contraste alto." data-en="Electric glow pulse with high-contrast energy.">
+              Pulso con resplandor eléctrico y contraste alto.
+            </p>
+            <div class="animation-duration">
+              <span data-es="Duración:" data-en="Duration:">Duración:</span>
+              <span>3-4 segundos</span>
+            </div>
+          </div>
+          <button class="animation-btn" data-es="Usar Animación" data-en="Use Animation">Usar Animación</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Digital Products Section -->
+  <section id="digital-products" class="products-section">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title" data-es="Productos Digitales" data-en="Digital Products">Productos Digitales</h2>
+        <p class="section-subtitle" data-es="Descubre nuestros productos digitales disponibles" data-en="Discover our available digital products">
+          Descubre nuestros productos digitales disponibles
+        </p>
+      </div>
+      
+      <div class="digital-products-grid">
+        <!-- Placeholder para productos digitales -->
+        <div class="product-card placeholder">
+          <div class="product-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <h3 class="product-title" data-es="Próximamente" data-en="Coming Soon">Próximamente</h3>
+          <p class="product-description" data-es="Estamos trabajando en productos digitales increíbles para ti." data-en="We're working on amazing digital products for you.">
+            Estamos trabajando en productos digitales increíbles para ti.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Animation Editor Modal -->
+  <div class="animation-editor-modal" id="animationEditorModal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">&times;</button>
+      
+      <div class="editor-container">
+        <div class="editor-header">
+          <h2 id="editorTitle" data-es="Editor de Animación" data-en="Animation Editor">Editor de Animación</h2>
+          <p id="editorSubtitle" data-es="Sube tu imagen y ve el preview de la animación" data-en="Upload your image and see the animation preview">
+            Sube tu imagen y ve el preview de la animación
+          </p>
+        </div>
+
+        <div class="editor-body">
+          <!-- Upload Area -->
+          <div class="upload-area" id="uploadArea">
+            <input type="file" id="imageInput" accept="image/*" style="display: none;">
+            <div class="upload-content">
+              <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+              </svg>
+              <p class="upload-text" data-es="Haz clic para subir una imagen" data-en="Click to upload an image">
+                Haz clic para subir una imagen
+              </p>
+              <p class="upload-hint" data-es="o arrastra y suelta" data-en="or drag and drop">
+                o arrastra y suelta
+              </p>
+            </div>
+          </div>
+
+          <!-- Preview Area -->
+          <div class="preview-area" id="previewArea" style="display: none;">
+            <div class="preview-container">
+              <img id="previewImage" src="" alt="Preview">
+              <div class="preview-overlay" id="previewOverlay"></div>
+            </div>
+            <div class="preview-controls">
+              <button class="btn btn-secondary" id="changeImageBtn" data-es="Cambiar Imagen" data-en="Change Image">Cambiar Imagen</button>
+              <button class="btn btn-primary" id="downloadBtn" data-es="Descargar Video" data-en="Download Video">Descargar Video</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="images/ZenMiniLogo-cutout.png" alt="Zen Solutions">
+          </div>
+          <p class="footer-tagline" data-es="Diseñamos experiencias digitales, productos y campañas que combinan creatividad con data para marcas que quieren destacar." data-en="We design digital experiences, products, and campaigns that merge creativity with data for brands that want to stand out.">
+            Diseñamos experiencias digitales, productos y campañas que combinan creatividad con data para marcas que quieren destacar.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy" data-es="© 2025 Zen Solutions. Todos los derechos reservados." data-en="© 2025 Zen Solutions. All rights reserved.">
+          © 2025 Zen Solutions. Todos los derechos reservados.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="zen-analytics-stub.js"></script>
+  <script src="firebase-config.js"></script>
+  <script type="module" src="analytics.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gif.js@0.2.0/dist/gif.js"></script>
+  <script src="script-new.js"></script>
+  <script src="products.js"></script>
+</body>
+</html>
+
