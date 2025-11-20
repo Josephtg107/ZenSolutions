@@ -275,7 +275,7 @@
     </div>
 
     <div style="text-align: center; margin: 3rem 0 2rem 0; padding: 2rem;">
-      <a href="subscription.html" style="
+      <a id="toolsSupportLink" href="subscription.html" style="
         color: var(--primary-purple); 
         text-decoration: none; 
         font-size: 1.1rem; 
@@ -294,6 +294,9 @@
     <a href="../index.html" style="color:var(--primary-purple);text-decoration:none;" data-en="Back to Home" data-es="Volver al Inicio">Volver al Inicio</a>
   </div>
 
+  <script src="../zen-analytics-stub.js"></script>
+  <script src="../firebase-config.js"></script>
+  <script type="module" src="../analytics.js"></script>
   <script src="freemium-system.js"></script>
   <script>
     // Mobile navbar
@@ -329,6 +332,33 @@
     document.addEventListener('DOMContentLoaded', () => {
       setLanguage(detectLanguage());
     });
+    (function initToolAnalytics() {
+      const send = (eventName, eventData = {}) => {
+        if (typeof window.trackEvent === 'function') {
+          window.trackEvent(eventName, eventData);
+        }
+      };
+
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.tool-card .tool-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const card = btn.closest('.tool-card');
+            const title = card?.querySelector('.tool-title')?.textContent?.trim();
+            send('tool_entry_click', {
+              tool: title,
+              href: btn.getAttribute('href')
+            });
+          });
+        });
+
+        const supportLink = document.getElementById('toolsSupportLink');
+        if (supportLink) {
+          supportLink.addEventListener('click', () => {
+            send('support_link_click', { location: 'tools_directory' });
+          });
+        }
+      });
+    })();
   </script>
 </body>
 </html>

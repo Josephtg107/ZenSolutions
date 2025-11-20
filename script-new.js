@@ -408,22 +408,22 @@ window.addEventListener('error', (e) => {
   console.error('JavaScript error:', e.error);
 });
 
-// ===== ANALYTICS READY (if you want to add later) =====
-function trackEvent(eventName, eventData = {}) {
-  // Placeholder for analytics tracking
-  console.log('Event tracked:', eventName, eventData);
-}
+// ===== ANALYTICS HELPERS =====
+const sendAnalyticsEvent = (eventName, eventData = {}) => {
+  if (typeof window.trackEvent === 'function') {
+    window.trackEvent(eventName, eventData);
+  } else {
+    console.debug('Analytics event (fallback):', eventName, eventData);
+  }
+};
 
 // Track important interactions
 document.addEventListener('DOMContentLoaded', () => {
-  // Track page load
-  trackEvent('page_view', { page: window.location.pathname });
-  
   // Track CTA clicks
   document.querySelectorAll('.btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      trackEvent('cta_click', { 
-        text: btn.textContent,
+      sendAnalyticsEvent('cta_click', { 
+        text: btn.textContent?.trim(),
         href: btn.href 
       });
     });
@@ -432,7 +432,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Track social media clicks
   document.querySelectorAll('.social-link').forEach(link => {
     link.addEventListener('click', () => {
-      trackEvent('social_click', { 
+      sendAnalyticsEvent('social_click', { 
         platform: link.getAttribute('aria-label'),
         href: link.href 
       });
