@@ -23,10 +23,19 @@ const MAX_CANVAS_DIMENSION = 1080; // px
 const FRAME_DURATION = 3000; // ms
 const FRAME_COUNT = 90; // 30 fps
 const MP4_FRAME_RATE = 30;
-const FFMPEG_CORE_PATH = 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/ffmpeg-core.js';
+
+const FFMPEG_PROXY_BASE = getFfmpegProxyBase();
+const FFMPEG_ASSETS = FFMPEG_PROXY_BASE
+  ? {
+      core: `${FFMPEG_PROXY_BASE}/ffmpeg-core.js`,
+      wasm: `${FFMPEG_PROXY_BASE}/ffmpeg-core.wasm`,
+      script: `${FFMPEG_PROXY_BASE}/ffmpeg.min.js`
+    }
+  : null;
 
 let ffmpegInstance = null;
 let ffmpegLoadingPromise = null;
+let ffmpegScriptPromise = null;
 
 const previewAnimationMap = {
   'rotate': 'rotate-animation',
@@ -316,7 +325,7 @@ async function handleDownloadClick() {
     file_type: lastUploadedFileMeta?.type,
     file_size: lastUploadedFileMeta?.size
   });
-
+  
   try {
     const framePayload = await prepareAnimationFrames();
 
@@ -333,6 +342,7 @@ async function handleDownloadClick() {
     const code = error?.code || 'unknown_error';
     const messages = {
       image_load_error: lang === 'es' ? 'No pudimos cargar tu imagen. Intenta con otro archivo.' : 'We could not load your image. Try a different file.',
+      ffmpeg_proxy_missing: lang === 'es' ? 'Configura el Worker/Proxy de FFmpeg antes de generar el video.' : 'Configure the FFmpeg proxy/worker before generating the video.',
       ffmpeg_library_missing: lang === 'es' ? 'FFmpeg no está disponible en este navegador.' : 'FFmpeg is not available in this browser.',
       ffmpeg_render_failed: lang === 'es' ? 'No pudimos generar el MP4. Intenta nuevamente.' : 'We couldn’t generate the MP4. Please try again.',
       unknown_error: lang === 'es' ? 'Ocurrió un error inesperado. Intenta de nuevo.' : 'Something went wrong. Please try again.'
@@ -376,32 +386,32 @@ function buildFramesFromImage(img) {
   const ctx = canvas.getContext('2d');
   ctx.imageSmoothingEnabled = true;
   ctx.imageSmoothingQuality = 'high';
-
-  const maxSize = Math.max(img.width, img.height);
+  
+    const maxSize = Math.max(img.width, img.height);
   const padding = currentAnimationType === 'slide-up' ? 100 : 50;
-  const scale = Math.min(1, MAX_CANVAS_DIMENSION / maxSize);
-  const scaledWidth = Math.round(img.width * scale);
-  const scaledHeight = Math.round(img.height * scale);
-  const adjustedPadding = Math.round(padding * scale);
-  const squareSize = Math.max(scaledWidth, scaledHeight);
+    const scale = Math.min(1, MAX_CANVAS_DIMENSION / maxSize);
+    const scaledWidth = Math.round(img.width * scale);
+    const scaledHeight = Math.round(img.height * scale);
+    const adjustedPadding = Math.round(padding * scale);
+    const squareSize = Math.max(scaledWidth, scaledHeight);
 
-  canvas.width = squareSize + adjustedPadding * 2;
-  canvas.height = squareSize + adjustedPadding * 2;
-
-  const x = (canvas.width - scaledWidth) / 2;
-  const y = (canvas.height - scaledHeight) / 2;
-  const centerX = canvas.width / 2;
-  const centerY = canvas.height / 2;
-
-  const frames = [];
+    canvas.width = squareSize + adjustedPadding * 2;
+    canvas.height = squareSize + adjustedPadding * 2;
+    
+    const x = (canvas.width - scaledWidth) / 2;
+    const y = (canvas.height - scaledHeight) / 2;
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    
+    const frames = [];
   for (let i = 0; i < FRAME_COUNT; i++) {
     const progress = i / FRAME_COUNT;
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#ffffff';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.save();
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      ctx.save();
     drawFrame(ctx, img, progress, {
       x,
       y,
@@ -429,49 +439,49 @@ function buildFramesFromImage(img) {
 function drawFrame(ctx, img, progress, options) {
   const { x, y, centerX, centerY, scaledWidth, scaledHeight, adjustedPadding } = options;
 
-  ctx.filter = 'none';
-  ctx.shadowColor = 'transparent';
-  ctx.shadowBlur = 0;
-  ctx.globalAlpha = 1;
-
-  if (currentAnimationType === 'rotate') {
-    const angle = progress * Math.PI * 2;
+      ctx.filter = 'none';
+      ctx.shadowColor = 'transparent';
+      ctx.shadowBlur = 0;
+      ctx.globalAlpha = 1;
+      
+      if (currentAnimationType === 'rotate') {
+        const angle = progress * Math.PI * 2;
     ctx.translate(centerX, centerY);
-    ctx.rotate(angle);
+        ctx.rotate(angle);
     ctx.translate(-centerX, -centerY);
-    ctx.drawImage(img, x, y, scaledWidth, scaledHeight);
-  } else if (currentAnimationType === 'slide-up') {
-    const easedProgress = 1 - Math.pow(1 - progress, 3);
-    const startY = adjustedPadding + scaledHeight;
-    const endY = y;
-    const currentY = startY - (startY - endY) * easedProgress;
-    ctx.drawImage(img, x, currentY, scaledWidth, scaledHeight);
-  } else if (currentAnimationType === 'zoom-pop') {
-    const zoom = 0.85 + 0.25 * Math.sin(progress * Math.PI);
-    const blur = 6 * (1 - zoom);
-    ctx.translate(centerX, centerY);
-    ctx.scale(zoom, zoom);
-    ctx.translate(-centerX, -centerY);
-    ctx.filter = `blur(${Math.max(0, blur)}px)`;
-    ctx.globalAlpha = 0.75 + 0.25 * Math.sin(progress * Math.PI);
-    ctx.drawImage(img, x, y, scaledWidth, scaledHeight);
-  } else if (currentAnimationType === 'tilt-sway') {
+        ctx.drawImage(img, x, y, scaledWidth, scaledHeight);
+      } else if (currentAnimationType === 'slide-up') {
+        const easedProgress = 1 - Math.pow(1 - progress, 3);
+        const startY = adjustedPadding + scaledHeight;
+        const endY = y;
+        const currentY = startY - (startY - endY) * easedProgress;
+        ctx.drawImage(img, x, currentY, scaledWidth, scaledHeight);
+      } else if (currentAnimationType === 'zoom-pop') {
+        const zoom = 0.85 + 0.25 * Math.sin(progress * Math.PI);
+        const blur = 6 * (1 - zoom);
+        ctx.translate(centerX, centerY);
+        ctx.scale(zoom, zoom);
+        ctx.translate(-centerX, -centerY);
+        ctx.filter = `blur(${Math.max(0, blur)}px)`;
+        ctx.globalAlpha = 0.75 + 0.25 * Math.sin(progress * Math.PI);
+        ctx.drawImage(img, x, y, scaledWidth, scaledHeight);
+      } else if (currentAnimationType === 'tilt-sway') {
     const sway = Math.sin(progress * Math.PI * 2) * (Math.PI / 12);
-    const lift = Math.sin(progress * Math.PI * 2) * 20;
-    ctx.translate(centerX, centerY + lift);
-    ctx.rotate(sway);
-    ctx.translate(-centerX, -centerY);
-    ctx.drawImage(img, x, y, scaledWidth, scaledHeight);
-  } else if (currentAnimationType === 'pulse-glow') {
-    const pulseWave = Math.sin(progress * Math.PI * 2);
-    const pulse = 0.95 + 0.12 * pulseWave;
-    ctx.translate(centerX, centerY);
-    ctx.scale(pulse, pulse);
-    ctx.translate(-centerX, -centerY);
-    ctx.shadowColor = 'rgba(167,139,250,0.8)';
-    ctx.shadowBlur = Math.max(20, 60 + 40 * pulseWave);
-    ctx.globalAlpha = 0.85 + 0.15 * pulseWave;
-    ctx.drawImage(img, x, y, scaledWidth, scaledHeight);
+        const lift = Math.sin(progress * Math.PI * 2) * 20;
+        ctx.translate(centerX, centerY + lift);
+        ctx.rotate(sway);
+        ctx.translate(-centerX, -centerY);
+        ctx.drawImage(img, x, y, scaledWidth, scaledHeight);
+      } else if (currentAnimationType === 'pulse-glow') {
+        const pulseWave = Math.sin(progress * Math.PI * 2);
+        const pulse = 0.95 + 0.12 * pulseWave;
+        ctx.translate(centerX, centerY);
+        ctx.scale(pulse, pulse);
+        ctx.translate(-centerX, -centerY);
+        ctx.shadowColor = 'rgba(167,139,250,0.8)';
+        ctx.shadowBlur = Math.max(20, 60 + 40 * pulseWave);
+        ctx.globalAlpha = 0.85 + 0.15 * pulseWave;
+        ctx.drawImage(img, x, y, scaledWidth, scaledHeight);
   } else {
     ctx.drawImage(img, x, y, scaledWidth, scaledHeight);
   }
@@ -538,6 +548,12 @@ async function exportMP4(framePayload, lang, progressCallback) {
 }
 
 async function ensureFFmpegLoaded() {
+  if (!FFMPEG_ASSETS) {
+    throw buildError('ffmpeg_proxy_missing', 'FFmpeg proxy URL is not configured');
+  }
+
+  await ensureFfmpegScriptLoaded();
+
   if (ffmpegInstance) {
     return ffmpegInstance;
   }
@@ -552,7 +568,7 @@ async function ensureFFmpegLoaded() {
 
   ffmpegInstance = window.FFmpeg.createFFmpeg({
     log: false,
-    corePath: FFMPEG_CORE_PATH
+    corePath: FFMPEG_ASSETS.core
   });
 
   ffmpegLoadingPromise = ffmpegInstance.load()
@@ -596,6 +612,49 @@ function buildError(code, message) {
   const error = new Error(message || code);
   error.code = code;
   return error;
+}
+
+function getFfmpegProxyBase() {
+  if (typeof window === 'undefined') {
+    return '';
+  }
+
+  const configured = (window.__FFMPEG_PROXY__ || '').trim();
+  if (configured) {
+    const sanitized = configured.replace(/\/+$/, '');
+    if (!sanitized.includes('example.workers.dev')) {
+      return sanitized;
+    }
+  }
+
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    return 'http://localhost:8787';
+  }
+
+  return '';
+}
+
+function ensureFfmpegScriptLoaded() {
+  if (typeof window === 'undefined' || window.FFmpeg) {
+    return Promise.resolve();
+  }
+
+  if (!FFMPEG_ASSETS?.script) {
+    return Promise.reject(buildError('ffmpeg_proxy_missing', 'FFmpeg proxy URL is not configured'));
+  }
+
+  if (!ffmpegScriptPromise) {
+    ffmpegScriptPromise = new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = FFMPEG_ASSETS.script;
+      script.crossOrigin = 'anonymous';
+      script.onload = () => resolve();
+      script.onerror = () => reject(buildError('ffmpeg_library_missing', 'Failed to load FFmpeg library'));
+      document.head.appendChild(script);
+    });
+  }
+
+  return ffmpegScriptPromise;
 }
 
 // Language Support (if needed)

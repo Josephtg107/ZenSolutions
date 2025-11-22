@@ -1,0 +1,11 @@
+name = "ffmpeg-proxy"
+main = "src/index.ts"
+compatibility_date = "2025-11-22"
+
+[vars]
+UPSTREAM_BASE = "https://cdn.jsdelivr.net/npm"
+
+[observability]
+enabled = false
+
+

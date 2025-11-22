@@ -289,6 +289,15 @@
   <script type="module" src="analytics.js"></script>
   <script src="script-new.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.6/dist/ffmpeg.min.js" crossorigin="anonymous"></script>
+  <script>
+    // Worker público que sirve el bundle de FFmpeg con cabeceras CORS/CORP
+    const PROD_PROXY_URL = 'https://ffmpeg-proxy.zensolutions-developer.workers.dev';
+    window.__FFMPEG_PROXY__ = window.__FFMPEG_PROXY__ || (
+      window.location.hostname === 'localhost'
+        ? 'http://localhost:8787'
+        : PROD_PROXY_URL
+    );
+  </script>
   <script src="products.js"></script>
 </body>
 </html>
