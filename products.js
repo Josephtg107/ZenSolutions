@@ -23,7 +23,7 @@ const MAX_CANVAS_DIMENSION = 1080; // px
 const FRAME_DURATION = 3000; // ms
 const FRAME_COUNT = 90; // 30 fps
 const MP4_FRAME_RATE = 30;
-const FFMPEG_CORE_PATH = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/ffmpeg-core.js';
+const FFMPEG_CORE_PATH = 'vendor/ffmpeg/ffmpeg-core.js';
 
 let ffmpegInstance = null;
 let ffmpegLoadingPromise = null;
