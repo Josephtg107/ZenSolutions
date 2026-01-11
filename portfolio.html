@@ -228,10 +228,12 @@
         }
 
         .modal-content {
-            width: auto;
+            /* Desktop/Tablet default: base on height */
+            height: 85vh;
+            width: calc(85vh * 9 / 16);
             max-width: 90vw;
-            height: 90vh;
-            aspect-ratio: 9/16;
+            /* Prevent overflow on mobile */
+
             background: black;
             border-radius: var(--radius-2xl);
             overflow: hidden;
@@ -239,6 +241,16 @@
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
             transform: scale(0.95);
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                /* Mobile: base on width to maximize screen usage */
+                width: 90vw;
+                height: calc(90vw * 16 / 9);
+                max-height: 85vh;
+                /* Ensure it fits vertically */
+            }
         }
 
         .video-modal.active .modal-content {
