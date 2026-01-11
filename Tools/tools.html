@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,34 +8,107 @@
   <link rel="icon" href="../Icon/favicon.ico" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="../styles-new.css">
   <link rel="stylesheet" href="freemium-styles.css">
-  
+
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8985004905696068"
-     crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script>
   <style>
-    body { min-height: 100vh; margin: 0; }
+    body {
+      min-height: 100vh;
+      margin: 0;
+    }
+
     .tools-hero {
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 6rem 1rem 2.5rem 1rem; /* fixed navbar space */
-      background: linear-gradient(135deg, rgba(167,139,250,0.10) 0%, rgba(212,255,101,0.10) 100%);
-      border-radius: 0 0 2rem 2rem; box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 1rem 2.5rem 1rem;
+      /* fixed navbar space */
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.10) 0%, rgba(212, 255, 101, 0.10) 100%);
+      border-radius: 0 0 2rem 2rem;
+      box-shadow: var(--shadow-md);
       text-align: center;
     }
-    .tools-hero h1 { font-size: 2.2rem; font-weight: 800; color: var(--dark-blue); margin: 0 0 .25rem 0; letter-spacing: -0.5px; }
-    .tools-hero p { color: var(--gray-700); font-size: 1.1rem; max-width: 720px; }
 
-    .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-8); }
-    .tool-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-2xl); box-shadow: var(--shadow); padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); transition: transform var(--transition-normal), box-shadow var(--transition-normal); }
-    .tool-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-    .tool-icon { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: linear-gradient(135deg, var(--primary-purple), var(--primary-green)); color: var(--black); }
-    .tool-title { font-weight: 700; color: var(--dark-blue); }
-    .tool-desc { color: var(--gray-600); font-size: .98rem; }
-    .tool-actions { margin-top: auto; }
-    .tool-btn { display: inline-block; padding: .6rem 1.1rem; background: var(--dark-blue); color: var(--white); border-radius: 999px; text-decoration: none; font-weight: 600; }
-    .tool-btn:hover { filter: brightness(1.05); }
+    .tools-hero h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--dark-blue);
+      margin: 0 0 .25rem 0;
+      letter-spacing: -0.5px;
+    }
+
+    .tools-hero p {
+      color: var(--gray-700);
+      font-size: 1.1rem;
+      max-width: 720px;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--space-8);
+    }
+
+    .tool-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-2xl);
+      box-shadow: var(--shadow);
+      padding: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    }
+
+    .tool-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .tool-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--primary-purple), var(--primary-green));
+      color: var(--black);
+    }
+
+    .tool-title {
+      font-weight: 700;
+      color: var(--dark-blue);
+    }
+
+    .tool-desc {
+      color: var(--gray-600);
+      font-size: .98rem;
+    }
+
+    .tool-actions {
+      margin-top: auto;
+    }
+
+    .tool-btn {
+      display: inline-block;
+      padding: .6rem 1.1rem;
+      background: var(--dark-blue);
+      color: var(--white);
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .tool-btn:hover {
+      filter: brightness(1.05);
+    }
 
     /* Estilos para información freemium */
     .freemium-info {
@@ -42,28 +116,28 @@
       text-align: center;
       max-width: 600px;
     }
-    
+
     .freemium-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: linear-gradient(135deg, rgba(167,139,250,0.15), rgba(212,255,101,0.15));
-      border: 1px solid rgba(167,139,250,0.3);
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.15), rgba(212, 255, 101, 0.15));
+      border: 1px solid rgba(167, 139, 250, 0.3);
       border-radius: 20px;
       padding: 8px 16px;
       margin-bottom: 12px;
     }
-    
+
     .badge-icon {
       font-size: 1.2rem;
     }
-    
+
     .badge-text {
       font-weight: 600;
       color: var(--dark-blue);
       font-size: 0.9rem;
     }
-    
+
     .freemium-description {
       color: var(--gray-600);
       font-size: 0.95rem;
@@ -73,22 +147,27 @@
 
     /* Estilo para enlace de apoyo en navegación */
     .nav-support {
-      background: linear-gradient(135deg, rgba(167,139,250,0.1), rgba(212,255,101,0.1));
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(212, 255, 101, 0.1));
       border-radius: 20px;
       padding: 6px 12px !important;
       font-weight: 600;
       color: var(--primary-purple) !important;
-      border: 1px solid rgba(167,139,250,0.2);
+      border: 1px solid rgba(167, 139, 250, 0.2);
     }
 
     .nav-support:hover {
-      background: linear-gradient(135deg, rgba(167,139,250,0.2), rgba(212,255,101,0.2));
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.2), rgba(212, 255, 101, 0.2));
       transform: translateY(-1px);
     }
 
-    @media (max-width: 600px) { .tools-hero h1 { font-size: 1.6rem; } }
+    @media (max-width: 600px) {
+      .tools-hero h1 {
+        font-size: 1.6rem;
+      }
+    }
   </style>
 </head>
+
 <body>
   <!-- Navbar -->
   <nav class="navbar" id="navbar">
@@ -101,6 +180,7 @@
       <div class="nav-menu" id="navMenu">
         <a href="../index.html#about" class="nav-link" data-en="About" data-es="Nosotros">Nosotros</a>
         <a href="../index.html#services" class="nav-link" data-en="Services" data-es="Servicios">Servicios</a>
+        <a href="../portfolio.html" class="nav-link" data-en="Portfolio" data-es="Portafolio">Portafolio</a>
         <a href="../index.html#work" class="nav-link" data-en="Work" data-es="Trabajo">Trabajo</a>
         <a href="tools.html" class="nav-link" data-en="Tools" data-es="Herramientas">Herramientas</a>
         <a href="subscription.html" class="nav-link nav-support" data-en="Support" data-es="Apóyanos">Apóyanos</a>
@@ -114,8 +194,10 @@
 
   <header class="tools-hero">
     <h1 data-en="Zen Online Tools" data-es="Herramientas en Línea de Zen">Herramientas en Línea de Zen</h1>
-    <p data-en="Free privacy-first tools that run right in your browser. If they save you time, feel free to invite us to a coffee." data-es="Herramientas gratuitas y privadas que corren en tu navegador. Si te ahorran tiempo, puedes invitarnos un café.">Herramientas gratuitas y privadas que corren en tu navegador. Si te ahorran tiempo, puedes invitarnos un café.</p>
-    
+    <p data-en="Free privacy-first tools that run right in your browser. If they save you time, feel free to invite us to a coffee."
+      data-es="Herramientas gratuitas y privadas que corren en tu navegador. Si te ahorran tiempo, puedes invitarnos un café.">
+      Herramientas gratuitas y privadas que corren en tu navegador. Si te ahorran tiempo, puedes invitarnos un café.</p>
+
     <!-- Información freemium -->
     <div class="freemium-info">
       <div class="freemium-badge">
@@ -123,25 +205,36 @@
         <span class="badge-text">Herramientas Gratuitas gracias a la comunidad</span>
       </div>
       <p class="freemium-description">
-        Todo corre gratis en tu navegador. Si alguna herramienta te salvó el día, <a href="subscription.html" style="color: var(--primary-purple); text-decoration: none; font-weight: 600;">invítanos un café</a> para seguir construyendo más.
+        Todo corre gratis en tu navegador. Si alguna herramienta te salvó el día, <a href="subscription.html"
+          style="color: var(--primary-purple); text-decoration: none; font-weight: 600;">invítanos un café</a> para
+        seguir construyendo más.
       </p>
     </div>
   </header>
 
   <main class="section-container">
     <div class="section-header visible">
-      <h2 class="section-title" data-en="Available Tools" data-es="Herramientas Disponibles">Herramientas Disponibles</h2>
-      <p class="section-subtitle" data-en="We’ll keep adding your most requested tools." data-es="Seguiremos agregando las herramientas más solicitadas.">Seguiremos agregando las herramientas más solicitadas.</p>
+      <h2 class="section-title" data-en="Available Tools" data-es="Herramientas Disponibles">Herramientas Disponibles
+      </h2>
+      <p class="section-subtitle" data-en="We’ll keep adding your most requested tools."
+        data-es="Seguiremos agregando las herramientas más solicitadas.">Seguiremos agregando las herramientas más
+        solicitadas.</p>
     </div>
 
     <div class="tools-grid">
       <!-- Image Converter -->
       <article class="tool-card">
         <div class="tool-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path
+              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
         </div>
         <h3 class="tool-title" data-en="Image Converter" data-es="Convertidor de Imágenes">Convertidor de Imágenes</h3>
-        <p class="tool-desc" data-en="Convert between JPG, PNG, WebP and other image formats. Choose source and target formats." data-es="Convierte entre JPG, PNG, WebP y otros formatos de imagen. Elige formato origen y destino.">Convierte entre JPG, PNG, WebP y otros formatos de imagen. Elige formato origen y destino.</p>
+        <p class="tool-desc"
+          data-en="Convert between JPG, PNG, WebP and other image formats. Choose source and target formats."
+          data-es="Convierte entre JPG, PNG, WebP y otros formatos de imagen. Elige formato origen y destino.">Convierte
+          entre JPG, PNG, WebP y otros formatos de imagen. Elige formato origen y destino.</p>
         <div class="tool-actions">
           <a class="tool-btn" href="image-converter.html" data-en="Open" data-es="Abrir">Abrir</a>
         </div>
@@ -150,10 +243,15 @@
       <!-- JPG to PNG -->
       <article class="tool-card">
         <div class="tool-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path
+              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
         </div>
         <h3 class="tool-title" data-en="JPG to PNG" data-es="JPG a PNG">JPG a PNG</h3>
-        <p class="tool-desc" data-en="Convert JPG images to PNG format with transparency support." data-es="Convierte imágenes JPG a formato PNG con soporte de transparencia.">Convierte imágenes JPG a formato PNG con soporte de transparencia.</p>
+        <p class="tool-desc" data-en="Convert JPG images to PNG format with transparency support."
+          data-es="Convierte imágenes JPG a formato PNG con soporte de transparencia.">Convierte imágenes JPG a formato
+          PNG con soporte de transparencia.</p>
         <div class="tool-actions">
           <a class="tool-btn" href="image-converter.html?from=jpg&to=png" data-en="Open" data-es="Abrir">Abrir</a>
         </div>
@@ -162,10 +260,15 @@
       <!-- PNG to JPG -->
       <article class="tool-card">
         <div class="tool-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path
+              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
         </div>
         <h3 class="tool-title" data-en="PNG to JPG" data-es="PNG a JPG">PNG a JPG</h3>
-        <p class="tool-desc" data-en="Convert PNG images to JPG format with background color options." data-es="Convierte imágenes PNG a formato JPG con opciones de color de fondo.">Convierte imágenes PNG a formato JPG con opciones de color de fondo.</p>
+        <p class="tool-desc" data-en="Convert PNG images to JPG format with background color options."
+          data-es="Convierte imágenes PNG a formato JPG con opciones de color de fondo.">Convierte imágenes PNG a
+          formato JPG con opciones de color de fondo.</p>
         <div class="tool-actions">
           <a class="tool-btn" href="image-converter.html?from=png&to=jpg" data-en="Open" data-es="Abrir">Abrir</a>
         </div>
@@ -174,10 +277,15 @@
       <!-- JPG to WebP -->
       <article class="tool-card">
         <div class="tool-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path
+              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
         </div>
         <h3 class="tool-title" data-en="JPG to WebP" data-es="JPG a WebP">JPG a WebP</h3>
-        <p class="tool-desc" data-en="Convert JPG images to modern WebP format for better compression." data-es="Convierte imágenes JPG al formato WebP moderno para mejor compresión.">Convierte imágenes JPG al formato WebP moderno para mejor compresión.</p>
+        <p class="tool-desc" data-en="Convert JPG images to modern WebP format for better compression."
+          data-es="Convierte imágenes JPG al formato WebP moderno para mejor compresión.">Convierte imágenes JPG al
+          formato WebP moderno para mejor compresión.</p>
         <div class="tool-actions">
           <a class="tool-btn" href="image-converter.html?from=jpg&to=webp" data-en="Open" data-es="Abrir">Abrir</a>
         </div>
@@ -186,10 +294,15 @@
       <!-- PNG to WebP -->
       <article class="tool-card">
         <div class="tool-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path
+              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
         </div>
         <h3 class="tool-title" data-en="PNG to WebP" data-es="PNG a WebP">PNG a WebP</h3>
-        <p class="tool-desc" data-en="Convert PNG images to WebP format maintaining transparency." data-es="Convierte imágenes PNG a formato WebP manteniendo la transparencia.">Convierte imágenes PNG a formato WebP manteniendo la transparencia.</p>
+        <p class="tool-desc" data-en="Convert PNG images to WebP format maintaining transparency."
+          data-es="Convierte imágenes PNG a formato WebP manteniendo la transparencia.">Convierte imágenes PNG a formato
+          WebP manteniendo la transparencia.</p>
         <div class="tool-actions">
           <a class="tool-btn" href="image-converter.html?from=png&to=webp" data-en="Open" data-es="Abrir">Abrir</a>
         </div>
@@ -198,10 +311,15 @@
       <!-- WebP to JPG -->
       <article class="tool-card">
         <div class="tool-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path
+              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
         </div>
         <h3 class="tool-title" data-en="WebP to JPG" data-es="WebP a JPG">WebP a JPG</h3>
-        <p class="tool-desc" data-en="Convert WebP images to JPG format for better compatibility." data-es="Convierte imágenes WebP a formato JPG para mejor compatibilidad.">Convierte imágenes WebP a formato JPG para mejor compatibilidad.</p>
+        <p class="tool-desc" data-en="Convert WebP images to JPG format for better compatibility."
+          data-es="Convierte imágenes WebP a formato JPG para mejor compatibilidad.">Convierte imágenes WebP a formato
+          JPG para mejor compatibilidad.</p>
         <div class="tool-actions">
           <a class="tool-btn" href="image-converter.html?from=webp&to=jpg" data-en="Open" data-es="Abrir">Abrir</a>
         </div>
@@ -210,10 +328,15 @@
       <!-- WebP to PNG -->
       <article class="tool-card">
         <div class="tool-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path
+              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
         </div>
         <h3 class="tool-title" data-en="WebP to PNG" data-es="WebP a PNG">WebP a PNG</h3>
-        <p class="tool-desc" data-en="Convert WebP images to PNG format maintaining transparency." data-es="Convierte imágenes WebP a formato PNG manteniendo la transparencia.">Convierte imágenes WebP a formato PNG manteniendo la transparencia.</p>
+        <p class="tool-desc" data-en="Convert WebP images to PNG format maintaining transparency."
+          data-es="Convierte imágenes WebP a formato PNG manteniendo la transparencia.">Convierte imágenes WebP a
+          formato PNG manteniendo la transparencia.</p>
         <div class="tool-actions">
           <a class="tool-btn" href="image-converter.html?from=webp&to=png" data-en="Open" data-es="Abrir">Abrir</a>
         </div>
@@ -222,10 +345,15 @@
       <!-- HEIC to JPG -->
       <article class="tool-card">
         <div class="tool-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path
+              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
         </div>
         <h3 class="tool-title" data-en="HEIC to JPG" data-es="HEIC a JPG">HEIC a JPG</h3>
-        <p class="tool-desc" data-en="Convert HEIC images from iPhone/Apple devices to JPG format." data-es="Convierte imágenes HEIC de iPhone/Apple a formato JPG.">Convierte imágenes HEIC de iPhone/Apple a formato JPG.</p>
+        <p class="tool-desc" data-en="Convert HEIC images from iPhone/Apple devices to JPG format."
+          data-es="Convierte imágenes HEIC de iPhone/Apple a formato JPG.">Convierte imágenes HEIC de iPhone/Apple a
+          formato JPG.</p>
         <div class="tool-actions">
           <a class="tool-btn" href="image-converter.html?from=heic&to=jpg" data-en="Open" data-es="Abrir">Abrir</a>
         </div>
@@ -234,10 +362,15 @@
       <!-- HEIC to PNG -->
       <article class="tool-card">
         <div class="tool-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path
+              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
         </div>
         <h3 class="tool-title" data-en="HEIC to PNG" data-es="HEIC a PNG">HEIC a PNG</h3>
-        <p class="tool-desc" data-en="Convert HEIC images from iPhone/Apple devices to PNG format." data-es="Convierte imágenes HEIC de iPhone/Apple a formato PNG.">Convierte imágenes HEIC de iPhone/Apple a formato PNG.</p>
+        <p class="tool-desc" data-en="Convert HEIC images from iPhone/Apple devices to PNG format."
+          data-es="Convierte imágenes HEIC de iPhone/Apple a formato PNG.">Convierte imágenes HEIC de iPhone/Apple a
+          formato PNG.</p>
         <div class="tool-actions">
           <a class="tool-btn" href="image-converter.html?from=heic&to=png" data-en="Open" data-es="Abrir">Abrir</a>
         </div>
@@ -246,10 +379,15 @@
       <!-- HEIC to WebP -->
       <article class="tool-card">
         <div class="tool-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path
+              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
         </div>
         <h3 class="tool-title" data-en="HEIC to WebP" data-es="HEIC a WebP">HEIC a WebP</h3>
-        <p class="tool-desc" data-en="Convert HEIC images from iPhone/Apple devices to WebP format." data-es="Convierte imágenes HEIC de iPhone/Apple a formato WebP.">Convierte imágenes HEIC de iPhone/Apple a formato WebP.</p>
+        <p class="tool-desc" data-en="Convert HEIC images from iPhone/Apple devices to WebP format."
+          data-es="Convierte imágenes HEIC de iPhone/Apple a formato WebP.">Convierte imágenes HEIC de iPhone/Apple a
+          formato WebP.</p>
         <div class="tool-actions">
           <a class="tool-btn" href="image-converter.html?from=heic&to=webp" data-en="Open" data-es="Abrir">Abrir</a>
         </div>
@@ -258,10 +396,14 @@
       <!-- Image to PDF -->
       <article class="tool-card">
         <div class="tool-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M6 2h7l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 1.5V7h3.5"/></svg>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path d="M6 2h7l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 1.5V7h3.5" />
+          </svg>
         </div>
         <h3 class="tool-title" data-en="Image to PDF" data-es="Imagen a PDF">Imagen a PDF</h3>
-        <p class="tool-desc" data-en="Convert PNG or JPG images into a single PDF, offline in your browser." data-es="Convierte imágenes PNG o JPG a un PDF, sin subir archivos.">Convierte imágenes PNG o JPG a un PDF, sin subir archivos.</p>
+        <p class="tool-desc" data-en="Convert PNG or JPG images into a single PDF, offline in your browser."
+          data-es="Convierte imágenes PNG o JPG a un PDF, sin subir archivos.">Convierte imágenes PNG o JPG a un PDF,
+          sin subir archivos.</p>
         <div class="tool-actions">
           <a class="tool-btn" href="image-to-pdf.html" data-en="Open" data-es="Abrir">Abrir</a>
         </div>
@@ -269,11 +411,16 @@
 
       <article class="tool-card">
         <div class="tool-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path d="M4 6h16M4 12h16M4 18h10" />
+          </svg>
         </div>
         <h3 class="tool-title" data-en="Merge PDF" data-es="Unir PDF">Unir PDF</h3>
-        <p class="tool-desc" data-en="Combine multiple PDFs into one, right in your browser." data-es="Combina varios PDFs en uno, directamente en tu navegador.">Combina varios PDFs en uno, directamente en tu navegador.</p>
-        <div class="tool-actions"><a class="tool-btn" href="merge-pdf.html" data-en="Open" data-es="Abrir">Abrir</a></div>
+        <p class="tool-desc" data-en="Combine multiple PDFs into one, right in your browser."
+          data-es="Combina varios PDFs en uno, directamente en tu navegador.">Combina varios PDFs en uno, directamente
+          en tu navegador.</p>
+        <div class="tool-actions"><a class="tool-btn" href="merge-pdf.html" data-en="Open" data-es="Abrir">Abrir</a>
+        </div>
       </article>
 
     </div>
@@ -289,13 +436,18 @@
         display: inline-block;
         transition: all var(--transition-normal);
         border: 2px solid var(--primary-purple);
-      " onmouseover="this.style.background='var(--primary-purple)'; this.style.color='var(--white)';" onmouseout="this.style.background='transparent'; this.style.color='var(--primary-purple)';" data-en="Did it help? Buy us a coffee ☕" data-es="¿Te sirvió? Invítanos un café ☕">¿Te sirvió? Invítanos un café ☕</a>
+      " onmouseover="this.style.background='var(--primary-purple)'; this.style.color='var(--white)';"
+        onmouseout="this.style.background='transparent'; this.style.color='var(--primary-purple)';"
+        data-en="Did it help? Buy us a coffee ☕" data-es="¿Te sirvió? Invítanos un café ☕">¿Te sirvió? Invítanos un café
+        ☕</a>
     </div>
   </main>
 
   <div class="tools-footer">
-    &copy; 2025 Zen Solutions. <span data-en="Powered by browser technology." data-es="Desarrollado con tecnología del navegador.">Desarrollado con tecnología de Zen Solutions.</span>
-    <a href="../index.html" style="color:var(--primary-purple);text-decoration:none;" data-en="Back to Home" data-es="Volver al Inicio">Volver al Inicio</a>
+    &copy; 2025 Zen Solutions. <span data-en="Powered by browser technology."
+      data-es="Desarrollado con tecnología del navegador.">Desarrollado con tecnología de Zen Solutions.</span>
+    <a href="../index.html" style="color:var(--primary-purple);text-decoration:none;" data-en="Back to Home"
+      data-es="Volver al Inicio">Volver al Inicio</a>
   </div>
 
   <script src="../zen-analytics-stub.js"></script>
@@ -304,7 +456,7 @@
   <script src="freemium-system.js"></script>
   <script>
     // Mobile navbar
-    (function initToolsNavbar(){
+    (function initToolsNavbar() {
       const navToggle = document.getElementById('navToggle');
       const navMenu = document.getElementById('navMenu');
       if (navToggle && navMenu) {
@@ -365,4 +517,5 @@
     })();
   </script>
 </body>
+
 </html>
